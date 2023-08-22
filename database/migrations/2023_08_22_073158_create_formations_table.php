@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
+            $table->string('ref', 11)->unique();
+            $table->string('module', 30);
+            $table->string('description');
+            $table->date('date_debut');
+            $table->date('date_fin');
             $table->timestamps();
         });
     }

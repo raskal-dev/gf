@@ -19,28 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'role_id',
-        'adresse_id',
         'email',
+        'is_admin',
         'password',
     ];
-
-    public function role() {
-        return $this->belongsTo(Roles::class);
-    }
-
-    public function adresse() {
-        return $this->belongsTo(Adresses::class);
-    }
-
-    public function cite() {
-        return $this->hasMany(Cite::class);
-    }
-
-    public function achat()
-    {
-        return $this->hasMany(Achat::class);
-    }
 
     /**
      * The attributes that should be hidden for serialization.

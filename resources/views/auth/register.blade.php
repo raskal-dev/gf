@@ -22,17 +22,6 @@
                     <label class="form-label" for="name">Username</label>
                     <span class="text-danger"><b>@error('name') {{$message}} @enderror</b></span>
                 </div>
-                <div class="col-md-4 form-goup">
-                    {{-- <input type="text" class="form-control" id="adresse_id" name="adresse_id" value="{{ old('adresse_id') }}"> --}}
-                    <select name="adresse_id" class="form-control" id="adresse_id">
-                        <option value="">--- Selectionner votre adresse ---</option>
-                        @foreach ($adresses as $adresse)
-                            <option value="{{ $adresse->id }}">{{ $adresse->adresse }}</option>
-                        @endforeach
-                    </select>
-                    <label class="form-label" for="adresse_id">Adresse</label>
-                    <span class="text-danger"><b>@error('adresse_id') {{$message}} @enderror</b></span>
-                </div>
             </div>
             <div class="col-md-8">
                 <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
