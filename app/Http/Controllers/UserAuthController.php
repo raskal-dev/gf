@@ -39,8 +39,7 @@ class UserAuthController extends Controller
 
     public function register()
     {
-        $adresses = Adresses::all();
-        return view('auth.register', compact('adresses'));
+        return view('auth.register');
     }
 
     public function login(Request $request)
@@ -81,29 +80,11 @@ class UserAuthController extends Controller
         //UTILISATION AUHTUSER
         $user = $this->auth->user();
 
-        // count
-        $citetotal = Cite::where('user_id', $user->id)->count();
-        $achattotal = Achat::where('user_id', $user->id)->count();
-        $prixlog = Logement::sum('prix');
-        $countlognovendu = Logement::where('isvendu', 0)->count();
-        $countlogtotal = Logement::count();
-        // $plog = ($countlognovendu*100)/$countlogtotal;
-        if ($countlogtotal <= 0) {
-            $plog = 0;
-        } else {
-            $plog = ($countlognovendu*100)/$countlogtotal;
-        }
-
-
         if(Session::has('user_id_auth')) {
             $data = User::where('id', '=', Session::get('user_id_auth')) -> first();
         }
         return view('frontend.home', compact(
-            'data',
-            'citetotal',
-            'achattotal',
-            'prixlog',
-            'plog'
+            'data'
         ));
 
     }
@@ -138,7 +119,6 @@ class UserAuthController extends Controller
     {
         $request -> validate([
             'name' => 'required|unique:users',
-            'adresse_id' => 'required',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:4|max:12|confirmed',
             'password_confirmation' => 'required'
@@ -146,9 +126,8 @@ class UserAuthController extends Controller
 
         $user = User::create([
             'name' => $request -> name,
-            'adresse_id' => $request -> adresse_id,
-            'role_id' => 1,
             'email' => $request -> email,
+            'is_admin' => 0,
             'password' => Hash::make($request -> password)
         ]);
 
