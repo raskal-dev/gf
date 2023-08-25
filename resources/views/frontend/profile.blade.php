@@ -1,23 +1,23 @@
 @extends('layouts.layoutkal')
 
 @section('content')
-    <div class="main1 container mt-4">
-        <div class="topbar">
+    <div class="main1">
+        {{-- <div class="topbar">
             <div class="toggle">
                 <ion-icon name="menu-outline"></ion-icon>
             </div>
 
-            {{-- <div class="search">
+            <div class="search">
                 <label>
                     <input type="text" placeholder="Search here">
                     <ion-icon name="search-outline"></ion-icon>
                 </label>
-            </div> --}}
+            </div>
 
-            {{-- <div class="user">
+            <div class="user">
                 <img src="{{ asset('build/assets/images/customer01.jpg') }}" alt="">
-            </div> --}}
-        </div>
+            </div>
+        </div> --}}
 
         <div class="details1">
             <div class="recentOrders">
@@ -26,32 +26,26 @@
                     {{-- <a href="#" class="btn1">View All</a> --}}
                 </div>
 
-                <h4>Mettre à jour votre nom et votre email</h4>
+                <h4>Update your account's profile information and email address</h4>
 
                 <form class="formupdateuser" method="POST" action="{{route('update.profile', ['user' => $data->id])}}">
                     @csrf
 
-                    <div class="row">
-                        <input type="hidden" name="_method" value="put">
+                    <input type="hidden" name="_method" value="put">
 
-                        <input type="hidden" name="id" value="{{ $data -> id }}">
+                    <input type="hidden" name="id" value="{{ $data -> id }}">
 
-                        <div class="form-goup col-md-4">
-                            <label for="name" class="form-label">Nom</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ $data -> name }}" placeholder="Your name"/>
-                            <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('name') {{$message}} @enderror</b></span>
+                    <label class="labelName">
+                        <input type="text" id="inputText" name="name" class="inputName" value="{{ $data -> name }}" placeholder="Your name"/>
+                        <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('name') {{$message}} @enderror</b></span>
+                    </label>
 
-                        </div>
+                    <label class="labelEmail">
+                        <input type="email" id="inputText" name="email" class="inputEmail" value="{{ $data -> email }}" placeholder="Your email"/>
+                        <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('email') {{$message}} @enderror</b></span>
+                    </label>
 
-                        <div class="form-goup col-md-4">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" value="{{ $data -> email }}" placeholder="Your email"/>
-                            <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('email') {{$message}} @enderror</b></span>
-
-                        </div>
-
-                        <label><button class="btn btn-outline-primary" type="submit">Enregistrer</button></label>
-                    </div>
+                    <button class="redSubmit" type="submit">Enregistrer</button>
 
                   </form>
 
@@ -60,12 +54,12 @@
 
         <div class="details1">
             <div class="recentOrders">
-                <div class="card mt-4">
-                    <h2>Mettre à jour votre Mot de passe</h2>
+                <div class="cardHeader">
+                    <h2>Update Password</h2>
                     {{-- <a href="#" class="btn1">View All</a> --}}
                 </div>
 
-                <h4>Pour changer votre mot de passe, assurer vous de faire votre mot de passe plus longue et securiser</h4>
+                <h4>Ensure your account is using a long, random password to stay secure.</h4>
                 <div>
                     <h4>
                         @if (Session::has('success'))
@@ -79,36 +73,27 @@
 
                     <input type="hidden" name="id" value="{{ $data -> id }}">
 
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="current_password" class="labelName">
-                            </label>
-                                <input type="password" id="current_password" name="current_password" class="form-control" value="{{ old('current_password') }}" placeholder="Current Password"/>
-                                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('current_password') {{$message}} @enderror</b></span>
-                                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>
-                                    @if (Session::has('fail'))
-                                        {{ Session()->get('fail'); }}
-                                    @endif
-                                </b></span>
+                    <label class="labelName">
+                        <input type="password" id="inputText" name="current_password" class="inputName" value="{{ old('current_password') }}" placeholder="Current Password"/>
+                        <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('current_password') {{$message}} @enderror</b></span>
+                        <span style="color: red; margin-top: -10px;margin-left: 20px"><b>
+                            @if (Session::has('fail'))
+                                {{ Session()->get('fail'); }}
+                            @endif
+                        </b></span>
+                    </label>
 
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="password" class="labelEmail"></label>
-                            <input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="New Password"/>
-                            <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('password') {{$message}} @enderror</b></span>
+                    <label class="labelEmail">
+                      <input type="password" id="inputText" name="password" class="inputEmail" value="{{ old('password') }}" placeholder="New Password"/>
+                      <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('password') {{$message}} @enderror</b></span>
+                    </label>
 
-                        </div>
+                    <label class="labelEmail">
+                        <input type="password" id="inputText" name="password_confirmation" value="{{ old('password_confirmation') }}" class="inputEmail" placeholder="Confirm Password"/>
+                        <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('password_confirmation') {{$message}} @enderror</b></span>
+                    </label>
 
-                        <div class="form-group col-md-4">
-                            <label for="password_confirmation" class="labelEmail"></label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control" placeholder="Confirm Password"/>
-                            <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('password_confirmation') {{$message}} @enderror</b></span>
-                        </div>
-
-                        <div class="col-md-4">
-                            <button class="btn btn-outline-primary" type="submit">Enregistrer</button>
-                        </div>
-                    </div>
+                    <button class="redSubmit" type="submit">Enregistrer</button>
 
                   </form>
 
@@ -117,18 +102,19 @@
 
         <div class="details1">
             <div class="recentOrders">
-                <div class="card mt-4">
-                    <h2>Suppression de votre compte</h2>
+                <div class="cardHeader">
+                    <h2>Delete Account</h2>
                     {{-- <a href="#" class="btn1">View All</a> --}}
                 </div>
 
-                <h4>Un fois que votre compte a été supprimer, tout vos données serra perdu, donc télécharger vos données d'abord.</h4>
+                <h4>Once your account is deleted, all of its resources and data will be permanently deleted.
+                    Before deleting your account, please download any data or information that you wish to retain.</h4>
 
                 <form action="{{route('user.delete', ['user' => $data -> id])}}" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="delete">
 
-                    <button class="btn btn-outline-danger" type="submit">
+                    <button class="btnsub" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>

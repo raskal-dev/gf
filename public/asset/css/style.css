@@ -25,8 +25,9 @@
 
 body{
     min-height: 100vh;
+    overflow-x: hidden;
     background-color: var(--body-color);
-    transition: var(--tran-05);
+    /* transition: var(--tran-05); */
 }
 
 ::selection{
@@ -296,7 +297,7 @@ body.dark .switch::before{
     position: absolute;
     top: 0;
     left: 250px;
-    height: 100vh;
+    /* height: 100vh; */
     width: calc(100% - 250px);
     background-color: var(--body-color);
     transition: var(--tran-05);
@@ -316,3 +317,274 @@ body.dark .switch::before{
 body.dark .home .text{
     color: var(--text-color);
 }
+
+/* By RasKal */
+.btn-inline {
+    display: flex;
+    gap: 10px;
+}
+
+/* ======================= Cards ====================== */
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    margin-top: 55px;
+  }
+
+  .cardBox .card1 {
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  .cardBox .card1 .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--blue);
+  }
+
+  .cardBox .card1 .cardName {
+    color: var(--black2);
+    font-size: 1.1rem;
+    margin-top: 5px;
+  }
+
+  .cardBox .card1 .iconBx {
+    font-size: 3.5rem;
+    color: var(--black2);
+  }
+
+  .cardBox .card1:hover {
+    background: var(--blue);
+  }
+  .cardBox .card1:hover .numbers,
+  .cardBox .card1:hover .cardName,
+  .cardBox .card1:hover .iconBx {
+    color: var(--white);
+  }
+
+  /* ================== Form Update ============== */
+
+  #inputText,
+  button {
+    /* font-family: "Montserrat", sans-serif; */
+    /* letter-spacing: -0.2px; */
+    font-size: 16px;
+  }
+
+  .formupdateuser {
+    padding: 16px;
+    width: 720px;
+    margin: 0 auto;
+  }
+
+  .inputName,
+  .inputEmail,
+  .redSubmit,
+  .blueSubmit {
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 16px;
+    background-color: #f1f1f1;
+    text-shadow: 1px 1px 0 #FFF;
+  }
+
+  .labelName,
+  .labelEmail {
+    display: block;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .inputName,
+  .inputEmail {
+    margin-right: 8px;
+    box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  #inputText:focus {
+    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+  }
+
+  .redSubmit:hover {
+    box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+  }
+
+  .redSubmit:active {
+    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+  }
+
+  button.redSubmit {
+    display: block;
+    width: 155px;
+    color: #AE1100;
+  }
+
+  .btnsub {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    /* color: #000000; */
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    /* background: #03e8f400; */
+    border: none;
+    background: #ff0000;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ff0000,
+        0 0 25px #ff0000,
+        0 0 50px #ff0000,
+        0 0 100px #ff0000;
+  }
+
+
+/* ================== Order Details List ============== */
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+    /* margin-top: 10px; */
+  }
+
+  .btndeleteuser {
+    padding: 10px 18px;
+    background: #f40303;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    transition: 2s;
+  }
+
+  .details1 {
+    margin-top: 55px;
+    position: relative;
+    width: 75%;
+    padding: 20px;
+    display: grid;
+    align-items: center;
+    /* grid-template-columns: 2fr 1fr;
+    grid-gap: 30px; */
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 10px; */
+  }
+
+  .details .recentOrders {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+
+  .details1 .recentOrders {
+    position: relative;
+    display: grid;
+    min-height: 350px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+
+  .details .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+
+  .details1 .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cardHeader h2 {
+    font-weight: 600;
+    color: var(--blue);
+  }
+
+  .cardHeader .btn1 {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+  }
+
+  .details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  .details table thead td {
+    font-weight: 600;
+  }
+  .details .recentOrders table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .details .recentOrders table tr:last-child {
+    border-bottom: none;
+  }
+  .details .recentOrders table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .details .recentOrders table tr td {
+    padding: 10px;
+  }
+  .details .recentOrders table tr td:last-child {
+    text-align: end;
+  }
+  .details .recentOrders table tr td:nth-child(2) {
+    text-align: end;
+  }
+  .details .recentOrders table tr td:nth-child(3) {
+    text-align: center;
+  }
+
+  .blueSubmit:hover {
+    box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+  }
+
+.blueSubmit:active1 {
+    box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+  }
+
+button.blueSubmit {
+    display: block;
+    width: 155px;
+    color: #002eae;
+  }

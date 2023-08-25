@@ -267,10 +267,12 @@
         </div>
     </div>
 </div>
+
+<a class="btn btn-warning" href="{{ route('demande.form') }}">Demande</a>
 </div>
 <footer class="bg-white sticky-footer">
 <div class="container my-auto">
-    <div class="text-center my-auto copyright"><span>Copyright © Gestion de vente de voiture 2023</span>
+    <div class="text-center my-auto copyright"><span>Copyright © Gestion des Formatsions MJS</span>
     </div>
 </div>
 </footer>

@@ -59,15 +59,15 @@
                         </a>
                     </li>
 
-                    <li class="{{ request()->is('cite') ? 'active1' : '' }}">
-                        <a href="{{ route('cite') }}">
+                    <li>
+                        <a href="#">
                             <i class='bx bx-bar-chart-alt-2 icon' ></i>
                             <span class="text nav-text">Cité</span>
                         </a>
                     </li>
 
-                    <li class="{{ request()->is('achat') ? 'active1' : '' }}">
-                        <a href="{{ route('achat') }}">
+                    <li>
+                        <a href="#">
                             <i class='bx bx-wallet icon' ></i>
                             <span class="text nav-text">Achat</span>
                         </a>

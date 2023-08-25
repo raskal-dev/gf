@@ -24,7 +24,7 @@ class DemandeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.demande.demande');
     }
 
     /**
@@ -35,7 +35,27 @@ class DemandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => "required",
+            'mail' => "required",
+            'num_tel' => "required",
+            'cin' => "required|min:12|max:12",
+            'date_nais' => "required",
+            'sexe' => "required"
+        ]);
+
+        Demande::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'mail' => $request->mail,
+            'num_tel' => $request->num_tel,
+            'date_nais' => $request->date_nais,
+            'cin' => $request->cin,
+            'sexe' => $request->sexe,
+            'isinscrit' => 0
+        ]);
+
+        return back()->with('success', "Votre demande a été bien envoyer et nous vous prions d'attandre la validation de votre demande.");
     }
 
     /**
@@ -46,7 +66,7 @@ class DemandeController extends Controller
      */
     public function show(Demande $demande)
     {
-        //
+        return view('pages.demande.demande');
     }
 
     /**
