@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\FonctionAction;
 use App\Models\Formation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FormationController extends Controller
@@ -24,7 +26,7 @@ class FormationController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.formation.formationCreate');
     }
 
     /**
@@ -35,7 +37,36 @@ class FormationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ref = FonctionAction::getRef(6);
+
+        $request->validate([
+            'module' => "required",
+            'description' => "required",
+            'date_debut' => "required",
+            'date_fin' => "required"
+        ]);
+
+        $now = now();
+        $date_debut = Carbon::parse($request->date_debut);
+        $date_fin = Carbon::parse($request->date_fin);
+
+        if ($date_debut > $date_fin) {
+
+            return back()->with('message', "Le date du debut doit êtres avant la date fin.");
+
+        } else {
+
+            Formation::create([
+                'ref' => $ref,
+                'module' => $request->module,
+                'description' => $request->description,
+                'date_debut' => $request->date_debut,
+                'date_fin' => $request->date_fin
+            ]);
+
+            return back()->with('message', "La création de la formation est avec succès.");
+        }
+
     }
 
     /**

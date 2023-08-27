@@ -66,10 +66,10 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#">
+                    <li class="{{request() -> is('formation') ? 'mande' : ''}}">
+                        <a href="{{ route('formation') }}">
                             <i class='bx bx-wallet icon' ></i>
-                            <span class="text nav-text">Achat</span>
+                            <span class="text nav-text">Formation</span>
                         </a>
                     </li>
 
