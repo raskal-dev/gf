@@ -59,14 +59,14 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#">
+                    <li class="{{ request()->is('demande/liste') ? 'active1' : '' }}">
+                        <a href="{{ route('demande.liste') }}">
                             <i class='bx bx-bar-chart-alt-2 icon' ></i>
-                            <span class="text nav-text">Cité</span>
+                            <span class="text nav-text">Demande</span>
                         </a>
                     </li>
 
-                    <li class="{{request() -> is('formation') ? 'mande' : ''}}">
+                    <li class="{{ request()->is('formation') ? 'active1' : ''}}">
                         <a href="{{ route('formation') }}">
                             <i class='bx bx-wallet icon' ></i>
                             <span class="text nav-text">Formation</span>

@@ -54,6 +54,10 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::view('/formation', 'pages.formation.formation')->name('formation');
         Route::get('/formation/create', [FormationController::class, 'create'])->name('formation.create');
         Route::post('/foramtsion/ajout', [FormationController::class, 'store'])->name('formation.ajout');
+
+        // DEMANDE
+        Route::view('/demande/liste', 'pages.demande.demandeList')->name('demande.liste');
+
     });
 });
 
