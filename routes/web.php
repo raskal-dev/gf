@@ -37,6 +37,10 @@ Route::middleware('alreadyloggedin')->group(function () {
 Route::middleware('prevent-back-history')->group(function () {
     Route::middleware('isLogged')->group(function () {
 
+        // DEMANDE POUR PUBLEQUE
+        Route::get('/demande', [DemandeController::class, 'create'])->name('demande.form');
+        Route::post('/demande/ajouter', [DemandeController::class, 'store'])->name('demande.ajouter');
+
         Route::view('/register', 'auth.register')->name('user.register');
         Route::post('/register-user', [UserAuthController::class, 'store'])->name('user.ajouter.register');
 

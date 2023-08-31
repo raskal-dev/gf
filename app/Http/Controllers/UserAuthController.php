@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Achat;
 use App\Models\Adresses;
 use App\Models\Cite;
+use App\Models\Demande;
+use App\Models\Formation;
 use App\Models\Logement;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -77,16 +80,48 @@ class UserAuthController extends Controller
 
     public function dash()
     {
+        $demandes = Demande::orderBy('id', 'desc')->paginate(8);
+
+        $formations = Formation::orderBy('id', 'desc')->paginate(8);
+
+        foreach ($demandes as $demande) {
+            $diffInSeconds = Carbon::now()->diffInSeconds($demande->created_at);
+
+            if ($diffInSeconds < 60) {
+                $difference = $diffInSeconds . " s";
+            } elseif ($diffInSeconds < 3600) {
+                $difference = floor($diffInSeconds / 60) . " min";
+            } elseif ($diffInSeconds < 86400) {
+                $difference = floor($diffInSeconds / 3600) . " h";
+            } else {
+                $difference = floor($diffInSeconds / 86400) . " d";
+            }
+
+            $demande->difference = $difference;
+        }
+
+        // COUNTS
+        $countDemande = Demande::all()->count();
+        $countFormation = Formation::all()->count();
+
+
+
         //UTILISATION AUHTUSER
         $user = $this->auth->user();
+
+
 
         if(Session::has('user_id_auth')) {
             $data = User::where('id', '=', Session::get('user_id_auth')) -> first();
         }
         return view('frontend.home', compact(
-            'data'
+            'data',
+            'demandes',
+            'difference',
+            'formations',
+            'countDemande',
+            'countFormation'
         ));
-
     }
 
     public function profile()
