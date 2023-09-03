@@ -56,7 +56,7 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::post('/foramtsion/ajout', [FormationController::class, 'store'])->name('formation.ajout');
 
         // DEMANDE
-        Route::view('/demande/liste', 'pages.demande.demandeList')->name('demande.liste');
+        Route::get('/demande/liste', [DemandeController::class, 'index'])->name('demande.liste');
 
     });
 });
