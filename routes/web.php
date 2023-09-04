@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\FormationController;
+use App\Http\Controllers\PersonneController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,9 @@ Route::middleware('prevent-back-history')->group(function () {
         // DEMANDE POUR PUBLEQUE
         Route::get('/demande', [DemandeController::class, 'create'])->name('demande.form');
         Route::post('/demande/ajouter', [DemandeController::class, 'store'])->name('demande.ajouter');
+        // DEMANDE
+        Route::get('/demande/liste', [DemandeController::class, 'index'])->name('demande.liste');
+        Route::get('/demande/accepte/{id_demande}', [DemandeController::class, 'formAccepte'])->name('demande.form.accepte');
 
         Route::view('/register', 'auth.register')->name('user.register');
         Route::post('/register-user', [UserAuthController::class, 'store'])->name('user.ajouter.register');
@@ -50,13 +54,13 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::put('profile/{user}', [UserAuthController::class, 'Update_Password'])->name('password.Update');
         Route::delete('profile/{user}', [UserAuthController::class, 'destroy'])->name('user.delete');
 
-        // Formation
+        // FORMATION
         Route::view('/formation', 'pages.formation.formation')->name('formation');
         Route::get('/formation/create', [FormationController::class, 'create'])->name('formation.create');
         Route::post('/foramtsion/ajout', [FormationController::class, 'store'])->name('formation.ajout');
 
-        // DEMANDE
-        Route::get('/demande/liste', [DemandeController::class, 'index'])->name('demande.liste');
+        // PERSONNE
+        Route::get('/personne', [PersonneController::class, 'index'])->name('personne');
 
     });
 });

@@ -4,9 +4,13 @@
 
     <div class="container">
 
-        <div class="cardHeader">
-            <h2>Page d'inscripation</h2>
+        <div class="head shadow-lg p-3 mb-5 bg-body-tertiary rounded titrehead">
+            <h1 class="text-center text text-info">Page d'inscripation</h1>
         </div>
+
+        {{-- <div class="cardHeader">
+            <h2>Page d'inscripation</h2>
+        </div> --}}
 
         <h4><b><u>Pour inscription</u></b> : Il faut attendre les responbles le valide pour que vous soyez bien inscrit</h4>
 

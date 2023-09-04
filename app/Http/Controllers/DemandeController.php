@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Demande;
+use App\Models\Formation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DemandeController extends Controller
@@ -14,9 +16,23 @@ class DemandeController extends Controller
      */
     public function index()
     {
-        $demandes = Demande::all();
+        $demandes = Demande::where('isinscrit', false)->get();
         return view('pages.demande.demandeList', compact(
             'demandes'
+        ));
+    }
+
+    public function formAccepte(Request $request)
+    {
+        $demandeid = $request->id_demande;
+        $now = Carbon::now();
+
+        // Récupérer les formations en cours et en attente en fonction de l'heure actuelle
+        $formations = Formation::where('date_fin', '>=', $now)->get();
+
+        return view('pages.demande.demandeAccepte', compact(
+            'formations',
+            'demandeid'
         ));
     }
 

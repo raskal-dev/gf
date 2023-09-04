@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Achat;
-use App\Models\Adresses;
-use App\Models\Cite;
 use App\Models\Demande;
 use App\Models\Formation;
-use App\Models\Logement;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -94,7 +90,7 @@ class UserAuthController extends Controller
             } elseif ($diffInSeconds < 86400) {
                 $difference = floor($diffInSeconds / 3600) . " h";
             } else {
-                $difference = floor($diffInSeconds / 86400) . " d";
+                $difference = floor($diffInSeconds / 86400) . " j";
             }
 
             $demande->difference = $difference;
@@ -114,6 +110,7 @@ class UserAuthController extends Controller
         if(Session::has('user_id_auth')) {
             $data = User::where('id', '=', Session::get('user_id_auth')) -> first();
         }
+
         return view('frontend.home', compact(
             'data',
             'demandes',

@@ -73,10 +73,10 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#">
+                    <li class="{{ request()->is('personne') ? 'active1' : ''}}">
+                        <a href="{{ route('personne') }}">
                             <i class='bx bx-pie-chart-alt icon' ></i>
-                            <span class="text nav-text">Analytics</span>
+                            <span class="text nav-text">Personne</span>
                         </a>
                     </li>
 
@@ -113,7 +113,7 @@
                     </a>
                 </li>
 
-                <li class="mode">
+                {{-- <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
                         <i class='bx bx-sun icon sun'></i>
@@ -123,7 +123,7 @@
                     <div class="toggle-switch">
                         <span class="switch"></span>
                     </div>
-                </li>
+                </li> --}}
 
             </div>
         </div>

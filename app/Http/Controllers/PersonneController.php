@@ -14,7 +14,7 @@ class PersonneController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.personne.personne');
     }
 
     /**
