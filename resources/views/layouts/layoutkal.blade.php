@@ -28,12 +28,12 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="{{ asset('asset/img/logo.png') }}" alt="">
+                    <img src="{{ asset('build/assets/images/logo.png') }}" alt="">
                 </span>
 
                 <div class="text logo-text">
-                    <span class="name1">Codinglab</span>
-                    <span class="profession">Web developer</span>
+                    <span class="name1">MJS</span>
+                    <span class="profession">Formation</span>
                 </div>
             </div>
 
@@ -61,21 +61,30 @@
 
                     <li class="{{ request()->is('demande/liste') ? 'active1' : '' }}">
                         <a href="{{ route('demande.liste') }}">
-                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
-                            <span class="text nav-text">Demande</span>
+                            <i class='bx bxs-user-badge icon position-relative'>
+                                @if ($countDemandesNonInscrites > 0)
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ $countDemandesNonInscrites }}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                                @endif
+                            </i>
+                            <span class="text nav-text">
+                                Demande
+                            </span>
                         </a>
                     </li>
 
                     <li class="{{ request()->is('formation') ? 'active1' : ''}}">
                         <a href="{{ route('formation') }}">
-                            <i class='bx bx-wallet icon' ></i>
+                            <i class='bx bxs-coupon icon'></i>
                             <span class="text nav-text">Formation</span>
                         </a>
                     </li>
 
                     <li class="{{ request()->is('personne') ? 'active1' : ''}}">
                         <a href="{{ route('personne') }}">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <i class='bx bx-user icon'></i>
                             <span class="text nav-text">Personne</span>
                         </a>
                     </li>

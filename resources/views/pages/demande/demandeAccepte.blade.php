@@ -47,7 +47,7 @@
             <div class="btn-inline">
                 <button class="blueSubmit" type="submit">Accepter</button>
                 <button class="redSubmit" type="submit">Retour</button>
-            </div>
+
 
           </form>
     </div>

@@ -117,7 +117,7 @@ class UserAuthController extends Controller
             'difference',
             'formations',
             'countDemande',
-            'countFormation'
+            'countFormation',
         ));
     }
 

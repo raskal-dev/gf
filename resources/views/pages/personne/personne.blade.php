@@ -28,20 +28,24 @@
         <div class="m-4">
             <div class="row">
             @foreach ($personnes as $personne)
-            <div class="col-md-6 col-xl-3 mb-4">
+            <div class="col-md-6 col-xl-4 mb-4">
                 <div class="card shadow border-start-primary py-2">
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-primary fw-bold text-xs h3 mb-1"><span>{{ $personne->id_dem }}</span></div>
+                                <div class="text-uppercase text-primary fw-bold text-xs h3 mb-1"><span>{{ $personne->demande->nom }} {{ $personne->demande->prenom }}</span></div>
                                 <hr class="hr">
-                                <div class="text-dark fw-bold h5 mb-0">
-                                    <span><u>Info</u></span><br>
-                                    <span>#1</span><br>
-                                    <span>Superficie: 200 m²</span>
+                                <div class="text-dark h5 mb-0">
+                                    <span class="fw-blod"><u>Info #{{ $personne->id }}</u></span><br>
+                                    <span class="fw-bold">Matricule : </span><span>{{ $personne->matricule }}</span><br><br>
+                                    <span class="fw-bold">Formation : </span><br><span>{{ $personne->formation->module }}</span><br><br>
+                                    <span class="fw-bold">Date de naissace : </span><br><span>{{ $personne->demande->date_nais }}</span><br><br>
+                                    <span class="fw-bold">Genre : </span><br><span>{{ $personne->demande->sexe }}</span><br><br>
+                                    <span class="fw-bold">Téléphone : </span><br><span>{{ $personne->demande->num_tel }}</span><br><br>
+                                    <span class="fw-bold">Email : </span><br><span>{{ $personne->demande->mail }}</span>
 
                                     <hr class="hr">
-                                    <span>Action</span><br>
+                                    <span class="fw-blode">Action</span><br>
                                     <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <span class="p-2"></span>
                                     <span class="text-danger">

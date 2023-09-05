@@ -17,11 +17,11 @@ class Personne extends Model
 
     public function demande()
     {
-        return $this->belongsTo(Demande::class);
+        return $this->belongsTo(Demande::class, 'id_dem', 'id');
     }
 
     public function formation()
     {
-        return $this->belongsTo(Formation::class);
+        return $this->belongsTo(Formation::class, 'id_for', 'id');
     }
 }
