@@ -61,6 +61,7 @@ Route::middleware('prevent-back-history')->group(function () {
 
         // PERSONNE
         Route::get('/personne', [PersonneController::class, 'index'])->name('personne');
+        Route::post('/persionne', [PersonneController::class, 'store'])->name('personne.ajout');
 
     });
 });

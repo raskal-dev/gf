@@ -25,14 +25,16 @@ class DemandeController extends Controller
     public function formAccepte(Request $request)
     {
         $demandeid = $request->id_demande;
+        $demandes = Demande::all();
+        $demande = $demandes->find($demandeid);
         $now = Carbon::now();
 
-        // Récupérer les formations en cours et en attente en fonction de l'heure actuelle
         $formations = Formation::where('date_fin', '>=', $now)->get();
 
         return view('pages.demande.demandeAccepte', compact(
             'formations',
-            'demandeid'
+            'demandeid',
+            'demande'
         ));
     }
 
@@ -58,7 +60,6 @@ class DemandeController extends Controller
             'nom' => "required",
             'mail' => "required",
             'num_tel' => "required",
-            'cin' => "required|min:12|max:12",
             'date_nais' => "required",
             'sexe' => "required"
         ]);
