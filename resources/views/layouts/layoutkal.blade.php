@@ -75,17 +75,17 @@
                         </a>
                     </li>
 
-                    <li class="{{ request()->is('formation') ? 'active1' : ''}}">
-                        <a href="{{ route('formation') }}">
-                            <i class='bx bxs-coupon icon'></i>
-                            <span class="text nav-text">Formation</span>
-                        </a>
-                    </li>
-
                     <li class="{{ request()->is('personne') ? 'active1' : ''}}">
                         <a href="{{ route('personne') }}">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">Personne</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ request()->is('formation') ? 'active1' : ''}}">
+                        <a href="{{ route('formation') }}">
+                            <i class='bx bxs-coupon icon'></i>
+                            <span class="text nav-text">Formation</span>
                         </a>
                     </li>
 
