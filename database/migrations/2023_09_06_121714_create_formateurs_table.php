@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nom_form', 50);
             $table->string('prenom_form', 100)->nullable();
             $table->string('cin_form', 12);
-            $table->string('sexe', 1);
+            $table->string('sexe_form', 1);
             $table->date('date_nais_form');
             $table->string('num_tel_form', 13);
             $table->string('mail_form', 50);

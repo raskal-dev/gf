@@ -21,4 +21,9 @@ class Formation extends Model
     {
         return $this->hasMany(Personne::class);
     }
+
+    public function former()
+    {
+        return $this->hasMany(Former::class);
+    }
 }
