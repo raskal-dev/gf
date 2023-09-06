@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DemandeController;
+use App\Http\Controllers\FormateurController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\PersonneController;
 use App\Http\Controllers\UserAuthController;
@@ -62,6 +63,11 @@ Route::middleware('prevent-back-history')->group(function () {
         // PERSONNE
         Route::get('/personne', [PersonneController::class, 'index'])->name('personne');
         Route::post('/persionne', [PersonneController::class, 'store'])->name('personne.ajout');
+
+        // FORMATUER
+        Route::get('/formateur', [FormateurController::class, 'index'])->name('formateur');
+        Route::get('/formateur/create', [FormateurController::class, 'create'])->name('formateur.create');
+        Route::post('/formateur/ajouter', [FormateurController::class, 'store'])->name('formateur.ajouter');
 
     });
 });

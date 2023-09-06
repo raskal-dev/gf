@@ -11,13 +11,21 @@
             <h4><b><u>Formation</u></b> : Insertion de la formation</h4>
 
             <br>
-                @if(Session::has('message'))
+            <section>
+                @if(session()->has("success"))
                     <div class="alert alert-success">
-                        <p>
-                            <b>{{ session()->get('message') }}</b>
-                        </p>
+                        <h3>{{ session()->get('success') }}</h3>
+                    </div>
+                @elseif (session()->has("errordelete"))
+                    <div class="alert alert-danger">
+                        <h4>{{ session()->get('errordelete') }}</h4>
+                    </div>
+                @elseif (session()->has("error"))
+                    <div class="alert alert-danger">
+                        <h4>{{ session()->get('error') }}</h4>
                     </div>
                 @endif
+            </section>
             <br>
 
             <form class="formupdateuser" method="POST" action="{{ route('formation.ajout') }}">
@@ -45,7 +53,7 @@
 
                 <div class="btn-inline">
                     <button class="blueSubmit" type="submit">Envoyer</button>
-                    <button class="redSubmit"><a class="asubmit" href="{{ route("formation") }}">Retour</a></button>
+                    <a class="redSubmit" href="{{ route("formation") }}">Retour</a>
                 </div>
 
               </form>

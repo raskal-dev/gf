@@ -89,10 +89,10 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#">
+                    <li class="{{ request()->is('formateur') ? 'active1' : ''}}">
+                        <a href="{{ route('formateur') }}">
                             <i class='bx bx-heart icon' ></i>
-                            <span class="text nav-text">Likes</span>
+                            <span class="text nav-text">Formateur</span>
                         </a>
                     </li>
 

@@ -52,7 +52,7 @@ class FormationController extends Controller
 
         if ($date_debut > $date_fin) {
 
-            return back()->with('message', "Le date du debut doit êtres avant la date fin.");
+            return back()->with('success', "Le date du debut doit êtres avant la date fin.");
 
         } else {
 
@@ -64,7 +64,7 @@ class FormationController extends Controller
                 'date_fin' => $request->date_fin
             ]);
 
-            return back()->with('message', "La création de la formation est avec succès.");
+            return back()->with('success', "La création de la formation est avec succès.");
         }
 
     }

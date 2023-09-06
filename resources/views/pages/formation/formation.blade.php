@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <a class="asubmit" href="{{ route("formation.create") }}"><button class="blueSubmit">Ajouter</button></a>
+        <a class="blueSubmit" href="{{ route("formation.create") }}">Ajouter</a>
     </div>
 
 @endsection

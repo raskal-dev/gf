@@ -14,7 +14,7 @@ class FormateurController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.formateur.formateur');
     }
 
     /**
@@ -24,7 +24,7 @@ class FormateurController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.formateur.formateurCreate');
     }
 
     /**
@@ -35,7 +35,27 @@ class FormateurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom_form' => 'required|max:50',
+            'prenom_form' => 'required|max:100',
+            'cin_form' => 'required|min:12|max:12',
+            'sexe_form' => 'required',
+            'date_nais_form' => 'required',
+            'num_tel_form' => 'required',
+            'mail_form' => 'required'
+        ]);
+
+        $formateur = Formateur::create([
+            'nom_form' => $request->nom_form,
+            'prenom_form' => $request->prenom_form,
+            'cin_form' => $request->cin_form,
+            'sexe_form' => $request->sexe_form,
+            'date_nais_form' => $request->date_nais_form,
+            'num_tel_form' => $request->num_tel_form,
+            'mail_form' => $request->mail_form
+        ]);
+
+        return back()->with('success', "Le formateur `$formateur->nom_form $formateur->prenom_form` est ajouté avec succès !");
     }
 
     /**

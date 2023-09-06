@@ -394,8 +394,12 @@ body.dark .home .text{
   .blueSubmit {
     border: 0;
     outline: 0;
+    text-decoration: none;
+    text-align: center;
+    text-transform: none;
     font-size: 16px;
     border-radius: 20px;
+    width: 155px;
     padding: 16px;
     background-color: #f1f1f1;
     text-shadow: 1px 1px 0 #FFF;
