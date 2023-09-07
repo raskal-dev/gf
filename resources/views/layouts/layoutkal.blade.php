@@ -91,7 +91,7 @@
 
                     <li class="{{ request()->is('formateur') ? 'active1' : ''}}">
                         <a href="{{ route('formateur') }}">
-                            <i class='bx bx-heart icon' ></i>
+                            <i class='bx bxs-user-detail icon'></i>
                             <span class="text nav-text">Formateur</span>
                         </a>
                     </li>
@@ -110,7 +110,7 @@
 
                 <li class="{{request() -> is('profile') ? 'active1' : ''}}" id="bottom-content1">
                     <a href="{{ route('user.profile') }}">
-                        <i class='bx bx-log-out icon' ></i>
+                        <i class='bx bxs-user-account icon'></i>
                         <span class="text nav-text">Profile</span>
                     </a>
                 </li>

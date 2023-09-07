@@ -39,8 +39,24 @@
                                     <span class="fw-blod"><u>Info #{{ $personne->id }}</u></span><br>
                                     <span class="fw-bold">Matricule : </span><span>{{ $personne->matricule }}</span><br><br>
                                     <span class="fw-bold">Formation : </span><br><span>{{ $personne->formation->module }}</span><br><br>
-                                    <span class="fw-bold">Date de naissace : </span><br><span>{{ $personne->demande->date_nais }}</span><br><br>
-                                    <span class="fw-bold">Genre : </span><br><span>{{ $personne->demande->sexe }}</span><br><br>
+                                    <span class="fw-bold">Date de naissace :
+                                        @php
+                                            $dateNais = \Carbon\Carbon::parse($personne->demande->date_nais);
+                                            $dateNaisFormat = $dateNais->format('d/m/Y');
+                                        @endphp
+
+
+                                    </span><br>
+                                    <span>{{ $dateNaisFormat }}</span><br><br>
+                                    <span class="fw-bold">Genre : </span><br>
+                                    <span>
+                                        @if ($personne->demande->sexe == 'M')
+                                            Mascullin
+
+                                        @else
+                                            Féminin
+                                        @endif
+                                    </span><br><br>
                                     <span class="fw-bold">Téléphone : </span><br><span>{{ $personne->demande->num_tel }}</span><br><br>
                                     <span class="fw-bold">Email : </span><br><span>{{ $personne->demande->mail }}</span>
 
