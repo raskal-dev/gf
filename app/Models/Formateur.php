@@ -21,6 +21,6 @@ class Formateur extends Model
 
     public function former()
     {
-        return $this->hasMany(Former::class);
+        return $this->hasMany(Former::class, 'id_form', 'id');
     }
 }

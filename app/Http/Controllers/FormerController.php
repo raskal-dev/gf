@@ -35,7 +35,17 @@ class FormerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_for' => 'required',
+            'id_form' => 'required'
+        ]);
+
+        Former::create([
+            'id_for' => $request->id_for,
+            'id_form' => $request->id_form
+        ]);
+
+        return redirect()->route('formateur.info', ['id_form' => $request->id_form])->with('success', 'Assigation est succès !');
     }
 
     /**

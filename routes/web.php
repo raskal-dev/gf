@@ -68,6 +68,7 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::get('/formateur', [FormateurController::class, 'index'])->name('formateur');
         Route::get('/formateur/create', [FormateurController::class, 'create'])->name('formateur.create');
         Route::post('/formateur/ajouter', [FormateurController::class, 'store'])->name('formateur.ajouter');
+        Route::get('/formateur/info/{id_form}', [FormateurController::class, 'info'])->name('formateur.info');
 
     });
 });

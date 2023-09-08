@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formateur;
+use App\Models\Formation;
 use Illuminate\Http\Request;
 
 class FormateurController extends Controller
@@ -14,7 +15,33 @@ class FormateurController extends Controller
      */
     public function index()
     {
-        return view('pages.formateur.formateur');
+
+        $formateurs = Formateur::orderBy('id', 'desc')->get();
+        return view('pages.formateur.formateur', compact(
+            'formateurs'
+        ));
+    }
+
+    public function info(Request $request)
+    {
+        // Utilisez $formateur_id pour obtenir le formateur spécifique
+        $formateur = Formateur::find($request->id_form);
+
+        if (!$formateur) {
+            // Gérez le cas où le formateur n'est pas trouvé (par exemple, redirigez vers une page d'erreur)
+            return redirect()->view('pages.formateur.formateurErreur');
+        }
+
+        // Maintenant, vous pouvez accéder aux formations associées à ce formateur
+        $formations = $formateur->former->map(function ($formationAssignee) {
+            return $formationAssignee->formation;
+        });
+
+        // Faites quelque chose avec les $formations (par exemple, les transmettre à une vue)
+        return view('pages.formateur.formateurPlusInfo', compact(
+            'formations',
+            'formateur'
+        ));
     }
 
     /**
