@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Formateur;
 use App\Models\Formation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FormateurController extends Controller
@@ -41,6 +42,20 @@ class FormateurController extends Controller
         return view('pages.formateur.formateurPlusInfo', compact(
             'formations',
             'formateur'
+        ));
+    }
+
+    public function contrat(Request $request)
+    {
+        $formateurid = $request->id_form;
+        $formateur = Formateur::find($formateurid);
+        $now = Carbon::now();
+
+        $formations = Formation::where('date_fin', '>=', $now)->get();
+
+        return view('pages.formateur.formateurContrat', compact(
+            'formateur',
+            'formations'
         ));
     }
 

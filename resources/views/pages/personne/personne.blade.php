@@ -39,6 +39,18 @@
                                     <span class="fw-blod"><u>Info #{{ $personne->id }}</u></span><br>
                                     <span class="fw-bold">Matricule : </span><span>{{ $personne->matricule }}</span><br><br>
                                     <span class="fw-bold">Formation : </span><br><span>{{ $personne->formation->module }}</span><br><br>
+                                    <span class="fw-bold">CIN : </span><br><span>
+                                            @if($personne->formation->cin == "")
+                                                @if($personne->age <= 1)
+                                                    {{ $personne->age }} an
+                                                @else
+                                                    {{ $personne->age }} ans
+                                                @endif
+                                            @else
+                                                {{ $personne->formation->cin }}
+
+                                            @endif
+                                        </span><br><br>
                                     <span class="fw-bold">Date de naissace :
                                         @php
                                             $dateNais = \Carbon\Carbon::parse($personne->demande->date_nais);

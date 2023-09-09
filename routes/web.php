@@ -3,6 +3,7 @@
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\FormateurController;
 use App\Http\Controllers\FormationController;
+use App\Http\Controllers\FormerController;
 use App\Http\Controllers\PersonneController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +57,7 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::delete('profile/{user}', [UserAuthController::class, 'destroy'])->name('user.delete');
 
         // FORMATION
-        Route::view('/formation', 'pages.formation.formation')->name('formation');
+        Route::get('/formation', [FormationController::class, 'index'])->name('formation');
         Route::get('/formation/create', [FormationController::class, 'create'])->name('formation.create');
         Route::post('/foramtsion/ajout', [FormationController::class, 'store'])->name('formation.ajout');
 
@@ -69,6 +70,10 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::get('/formateur/create', [FormateurController::class, 'create'])->name('formateur.create');
         Route::post('/formateur/ajouter', [FormateurController::class, 'store'])->name('formateur.ajouter');
         Route::get('/formateur/info/{id_form}', [FormateurController::class, 'info'])->name('formateur.info');
+        Route::get('/formateur/contrat/{id_form}', [FormateurController::class, 'contrat'])->name('formateur.contrat');
+
+        // FORMER
+        Route::post('/former/ajouter', [FormerController::class, 'store'])->name('former.ajouter');
 
     });
 });

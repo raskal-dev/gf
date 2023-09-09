@@ -41,8 +41,6 @@
                                 <p class="text-center dropdown-header">Action :</p><a
                                     class="dropdown-item" href="{{ route('demande.form.accepte', ['id_demande' => $demande->id]) }}">&nbsp;Accepter</a><a class="dropdown-item"
                                     href="#">&nbsp;Refuser</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item"
-                                    href="#">&nbsp;Modifier</a>
                             </div>
                         </div>
 

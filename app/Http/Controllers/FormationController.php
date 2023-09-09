@@ -16,7 +16,10 @@ class FormationController extends Controller
      */
     public function index()
     {
-        //
+        $formations = Formation::orderBy('id', 'desc')->get();
+        return view('pages.formation.formation', compact(
+            'formations'
+        ));
     }
 
     /**

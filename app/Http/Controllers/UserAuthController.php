@@ -114,7 +114,6 @@ class UserAuthController extends Controller
         return view('frontend.home', compact(
             'data',
             'demandes',
-            'difference',
             'formations',
             'countDemande',
             'countFormation',

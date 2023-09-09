@@ -5,7 +5,7 @@
     <div class="container">
 
         <div class="head shadow-lg p-3 mb-5 bg-body-tertiary rounded titrehead">
-            <h1 class="text-center text text-info">Contrat de ""</h1>
+            <h1 class="text-center text text-info">Contrat de "{{ $formateur->nom_form }} {{ $formateur->prenom_form }}"</h1>
         </div>
 
         {{-- <div class="cardHeader">
@@ -32,51 +32,28 @@
         </section>
         <br>
 
-        <form class="formupdateuser" method="POST" action="{{ route('formateur.ajouter') }}">
+        <form class="formupdateuser" method="POST" action="{{ route('former.ajouter') }}">
             @csrf
 
             <label class="labelName">
-                <input type="text" id="nom_form" name="nom_form" class="inputName" placeholder="Nom"/>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('nom_form') {{$message}} @enderror</b></span>
+                <input type="hidden" id="id_form" name="id_form" class="inputName" value="{{ $formateur->id }}"/>
+                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('id_form') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
-                <input type="text" id="prenom_form" name="prenom_form" class="inputName" placeholder="Prénom"/>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('prenom_form') {{$message}} @enderror</b></span>
-            </label>
+                <select name="id_for" id="id_for" class="inputName">
+                    <option value=""> --- Selection une formation --- </option>
+                    @foreach ($formations as $formation)
+                        <option value="{{ $formation->id }}">{{ $formation->module }}</option>
 
-            <label class="labelEmail">
-                <input type="email" id="mail_form" name="mail_form" class="inputEmail" placeholder="Email"/>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('mail_form') {{$message}} @enderror</b></span>
-            </label>
-
-            <label class="labelName">
-                <input type="text" id="num_tel_form" name="num_tel_form" class="inputName" placeholder="Téléphone"/>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('num_tel_form') {{$message}} @enderror</b></span>
-            </label>
-
-            <label class="labelName">
-                <input type="date" id="date_nais_form" name="date_nais_form" class="inputName" placeholder="Date De Naissance"/>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('date_nais_form') {{$message}} @enderror</b></span>
-            </label>
-
-            <label class="labelName">
-                <input type="text" id="cin_form" name="cin_form" class="inputName" placeholder="CIN"/>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('cin_form') {{$message}} @enderror</b></span>
-            </label>
-
-            <label class="labelName">
-                <select name="sexe_form" id="sexe_form" class="inputName">
-                    <option value=""> --- Selection votre genre --- </option>
-                    <option value="M">Masculin</option>
-                    <option value="F">Féminin</option>
+                    @endforeach
                 </select>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('sexe_form') {{$message}} @enderror</b></span>
+                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('id_for') {{$message}} @enderror</b></span>
             </label>
 
             <div class="btn-inline">
                 <button class="blueSubmit" type="submit">Envoyer</button>
-                <a class="redSubmit" href="{{ route("formateur") }}">Retour</a>
+                <a class="redSubmit" href="{{ route("formateur.info", ['id_form' => $formateur->id]) }}">Retour</a>
             </div>
 
           </form>

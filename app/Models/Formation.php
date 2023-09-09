@@ -24,6 +24,6 @@ class Formation extends Model
 
     public function former()
     {
-        return $this->hasMany(Former::class);
+        return $this->hasMany(Former::class, 'id_for', 'id');
     }
 }

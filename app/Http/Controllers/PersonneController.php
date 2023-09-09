@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\FonctionAction;
 use App\Models\Demande;
 use App\Models\Personne;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PersonneController extends Controller
@@ -17,6 +18,16 @@ class PersonneController extends Controller
     public function index()
     {
         $personnes = Personne::orderBy('id', 'desc')->get();
+
+        foreach ($personnes as $personne) {
+            $dateDeNaissance = $personne->demande->date_nais;
+
+            // Calculez l'âge à partir de la date de naissance
+            $age = Carbon::parse($dateDeNaissance)->age;
+
+            // Ajoutez l'âge calculé à la personne actuelle
+            $personne->age = $age;
+        }
         return view('pages.personne.personne', compact(
             'personnes'
         ));
@@ -40,7 +51,6 @@ class PersonneController extends Controller
      */
     public function store(Request $request)
     {
-
         $latestPersonne = Personne::latest()->first();
         if ($latestPersonne !== null) {
             $idlastpresonne = $latestPersonne->id + 1;
