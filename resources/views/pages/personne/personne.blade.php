@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
-                                <div class="text-uppercase text-primary fw-bold text-xs h3 mb-1"><span>{{ $personne->demande->nom }} {{ $personne->demande->prenom }}</span></div>
+                                <div class="text-uppercase text-primary fw-bold text-xs h3 mb-1" style="height: 80px;"><span>{{ $personne->demande->nom }} {{ $personne->demande->prenom }}</span></div>
                                 <hr class="hr">
                                 <div class="text-dark h5 mb-0">
                                     <span class="fw-blod"><u>Info #{{ $personne->id }}</u></span><br>

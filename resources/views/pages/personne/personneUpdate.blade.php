@@ -36,26 +36,31 @@
             @csrf
 
             <label class="labelName">
-                <input type="text" id="nom" name="nom" class="inputName" placeholder="Nom" value="{{ $personne->matricule }}"/>
-                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('nom') {{$message}} @enderror</b></span>
+                <b>Matricule : </b>
+                <input type="text" id="matricule" name="matricule" class="inputName" placeholder="Matricule" value="{{ $personne->matricule }}" disabled/>
+                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('matricule') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Nom : </b>
                 <input type="text" id="nom" name="nom" class="inputName" placeholder="Nom" value="{{ $personne->demande->nom }}"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('nom') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Prénom : </b>
                 <input type="text" id="prenom" name="prenom" class="inputName" placeholder="Prénom" value="{{ $personne->demande->prenom }}"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('prenom') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelEmail">
+                <b>Email : </b>
                 <input type="email" id="mail" name="mail" class="inputEmail" placeholder="Email" value="{{ $personne->demande->mail }}"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('mail') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Téléphone : </b>
                 <input type="text" id="num_tel" name="num_tel" class="inputName" placeholder="Téléphone" value="{{ $personne->demande->num_tel }}"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('num_tel') {{$message}} @enderror</b></span>
             </label>
@@ -67,11 +72,13 @@
             </label>
 
             <label class="labelName">
+                <b>CIN : </b>
                 <input type="text" id="cin" name="cin" class="inputName" placeholder="CIN" value="{{ $personne->formation->cin }}"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('cin') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Sexe : </b>
                 <select name="sexe" id="sexe" class="inputName">
                     @if ($personne->demande->sexe == 'M')
                         <option value="M" selected>Masculin</option>
@@ -86,6 +93,7 @@
             </label>
 
             <label class="labelName">
+                <b>Formation : </b>
                 <select name="id_for" id="id_for" class="inputName">
                     @foreach ($formations as $formation)
 

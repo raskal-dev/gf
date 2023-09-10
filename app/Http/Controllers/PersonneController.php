@@ -124,7 +124,41 @@ class PersonneController extends Controller
      */
     public function update(Request $request, Personne $personne)
     {
-        //
+        $id_dem = $request->iddem;
+        $id_per = $request->idper;
+
+        $personnes = Personne::all();
+        $personne = $personnes->find($id_per);
+
+        $demandes = Demande::all();
+        $demande = $demandes->find($id_dem);
+
+        $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'mail' => 'required',
+            'num_tel' => 'required',
+            'date_nais' => 'required',
+            'sexe' => 'required',
+            'id_for' => 'required'
+        ]);
+
+        $personne->update([
+            'id_for' => $request->id_for,
+            'id_dem' => $id_dem
+        ]);
+
+        $demande->update([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'mail' => $request->mail,
+            'num_tel' => $request->num_tel,
+            'date_nais' => $request->date_nais,
+            'cin' => $request->cin,
+            'sexe' => $request->sexe
+        ]);
+
+        return redirect()->route('personne')->with('success', "Operation réussi avec success !.");
     }
 
     /**
