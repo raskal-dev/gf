@@ -64,6 +64,8 @@ Route::middleware('prevent-back-history')->group(function () {
         // PERSONNE
         Route::get('/personne', [PersonneController::class, 'index'])->name('personne');
         Route::post('/persionne', [PersonneController::class, 'store'])->name('personne.ajout');
+        Route::get('/persionne/update/{personne}', [PersonneController::class, 'show'])->name('personne.show');
+        Route::post('/persionne/update/personne:{idper}/demande:{iddem}', [PersonneController::class, 'update'])->name('personne.update');
 
         // FORMATUER
         Route::get('/formateur', [FormateurController::class, 'index'])->name('formateur');

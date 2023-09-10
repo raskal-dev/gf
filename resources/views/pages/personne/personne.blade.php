@@ -74,7 +74,7 @@
 
                                     <hr class="hr">
                                     <span class="fw-blode">Action</span><br>
-                                    <a href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="{{ route('personne.show', ['personne' => $personne->id]) }}"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <span class="p-2"></span>
                                     <span class="text-danger">
                                         <a href="#"><i class="text-danger fa-solid fa-trash-can" onclick="if(confirm('Vous-voulez vraiment supprimer cette cite ?')){document.getElementById('form-1').submit() }"></i></a>

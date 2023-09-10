@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\FonctionAction;
 use App\Models\Demande;
+use App\Models\Formation;
 use App\Models\Personne;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -91,7 +92,16 @@ class PersonneController extends Controller
      */
     public function show(Personne $personne)
     {
-        //
+        $personnes = Personne::all();
+
+        $now = Carbon::now();
+        $formations = Formation::where('date_fin', '>=', $now)->get();
+        $personne = $personnes->find($personne);
+
+        return view('pages.personne.personneUpdate', compact(
+            'personne',
+            'formations'
+        ));
     }
 
     /**
