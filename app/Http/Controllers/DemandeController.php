@@ -16,7 +16,7 @@ class DemandeController extends Controller
      */
     public function index()
     {
-        $demandes = Demande::where('isinscrit', false)->get();
+        $demandes = Demande::where('isinscrit', false)->orderBy('id', 'desc')->get();
         return view('pages.demande.demandeList', compact(
             'demandes'
         ));
