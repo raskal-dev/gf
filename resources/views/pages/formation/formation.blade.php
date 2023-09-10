@@ -37,32 +37,39 @@
 
                         </div>
                         <div class="card-body">
-                            <div class="chart-area">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="col-xl-6">
+                                    <div class="chart-area">
+                                        <ul>
+                                            <li>
+                                                <b>Référence : </b>
+                                                {{-- @php
+                                                    $dateNais = \Carbon\Carbon::parse($demande->date_nais);
+                                                    $dateNaisFormat = $dateNais->format('d/m/Y');
+                                                @endphp --}}
+                                                {{ $formation->ref }}
+                                            </li>
+                                            {{-- <li><b>CIN : </b>{{ $demande->cin }}</li> --}}
+                                            <li>
+                                                <b>Déscription : </b>
+                                                {{-- @if ($demande->sexe == 'M')
+                                                    Mascullin
 
-                                <ul>
-                                    <li>
-                                        <b>Référence : </b>
-                                        {{-- @php
-                                            $dateNais = \Carbon\Carbon::parse($demande->date_nais);
-                                            $dateNaisFormat = $dateNais->format('d/m/Y');
-                                        @endphp
---}}
-                                        {{ $formation->ref }}
-                                    </li>
-                                    {{-- <li><b>CIN : </b>{{ $demande->cin }}</li> --}}
-                                    <li>
-                                        <b>Déscription : </b>
-                                        {{-- @if ($demande->sexe == 'M')
-                                            Mascullin
-
-                                        @else
-                                            Féminin
-                                        @endif --}}
-                                        {{ $formation->description }}
-                                    </li>
-                                    {{-- <li><b>Téléphone : </b>{{ $demande->num_tel }}</li>
-                                    <li><b>Email : </b>{{ $demande->mail }}</li> --}}
-                                </ul>
+                                                @else
+                                                    Féminin
+                                                @endif --}}
+                                                {{ $formation->description }}
+                                            </li>
+                                            {{-- <li><b>Téléphone : </b>{{ $demande->num_tel }}</li>
+                                            <li><b>Email : </b>{{ $demande->mail }}</li> --}}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <a class="btn btn-info rounded-pill" href="{{ route('print.pdf', ['id_for' => $formation->id]) }}" title="Fiche de presence"><i class="fa-solid fa-print"></i></a>
+                                    <span class="m-1 p-2"></span>
+                                    <a class="btn btn-warning rounded-pill" href="{{ route('formation.liste.personnes', ['id_for' => $formation->id]) }}" title="Liste des Personnes"><i class="fa-solid fa-table-list"></i></i></a>
+                                </div>
                             </div>
 
                         </div>

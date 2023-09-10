@@ -19,7 +19,7 @@ class Formation extends Model
 
     public function personne()
     {
-        return $this->hasMany(Personne::class);
+        return $this->hasMany(Personne::class, 'id_for', 'id');
     }
 
     public function former()

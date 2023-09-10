@@ -6,6 +6,7 @@ use App\Actions\FonctionAction;
 use App\Models\Formation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class FormationController extends Controller
 {
@@ -70,6 +71,34 @@ class FormationController extends Controller
             return back()->with('success', "La création de la formation est avec succès.");
         }
 
+    }
+
+    public function personneFormation(Request $request)
+    {
+        $id_for = $request->id_for;
+        $formation = Formation::find($id_for);
+        $personnesFormations = $formation->personne;
+
+        return view('pages.formation.formationListePersonnes', compact(
+            'personnesFormations',
+            'formation'
+        ));
+    }
+
+    public function printpdf(Request $request)
+    {
+        $id_for = $request->id_for;
+        $formation = Formation::find($id_for);
+        $personnesFormations = $formation->personne;
+
+        $pdf = PDF::loadView('pages.formation.printpdf', compact(
+            'personnesFormations',
+            'formation'
+        ));
+
+        $now = Carbon::now();
+
+        return $pdf->download('fichepresence.pdf');
     }
 
     /**
