@@ -29,7 +29,7 @@
 
             @foreach ($demandes as $demande)
 
-                <div class="col-lg-5 col-xl-4">
+                <div class="col-lg-5 col-xl-4" style="height: 400px;">
                     <div class="card shadow mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h6 class="text-primary fw-bold m-0">{{ $demande->nom }} {{ $demande->prenom }}</h6>
@@ -72,6 +72,10 @@
                                     <li><b>Email : </b>{{ $demande->mail }}</li>
                                 </ul>
                             </div>
+
+                        </div>
+                        <div class="card-header d-flex justify-content-between align-items-center" style="height: 100px;">
+                            <h6 class="text fw-bold m-0">{{ $demande->demande }}</h6>
 
                         </div>
                     </div>

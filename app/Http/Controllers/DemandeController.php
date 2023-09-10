@@ -61,7 +61,8 @@ class DemandeController extends Controller
             'mail' => "required",
             'num_tel' => "required",
             'date_nais' => "required",
-            'sexe' => "required"
+            'sexe' => "required",
+            'demande' => "required"
         ]);
 
         Demande::create([
@@ -72,6 +73,7 @@ class DemandeController extends Controller
             'date_nais' => $request->date_nais,
             'cin' => $request->cin,
             'sexe' => $request->sexe,
+            'demande' => $request->demande,
             'isinscrit' => 0
         ]);
 

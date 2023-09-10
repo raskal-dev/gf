@@ -17,6 +17,7 @@ class Demande extends Model
         'date_nais',
         'cin',
         'sexe',
+        'demande',
         'isinscrit'
     ];
 

@@ -56,6 +56,7 @@
             </label>
 
             <label class="labelName">
+                <b>Date de Naissance : </b>
                 <input type="date" id="date_nais" name="date_nais" class="inputName" placeholder="Date De Naissance"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('date_nais') {{$message}} @enderror</b></span>
             </label>
@@ -72,6 +73,11 @@
                     <option value="F">Féminin</option>
                 </select>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('sexe') {{$message}} @enderror</b></span>
+            </label>
+
+            <label class="labelName">
+                <input type="text" id="demande" name="demande" class="inputName" placeholder="Demande"/>
+                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('demande') {{$message}} @enderror</b></span>
             </label>
 
             <div class="btn-inline">
