@@ -79,6 +79,9 @@ Route::middleware('prevent-back-history')->group(function () {
         // FORMER
         Route::post('/former/ajouter', [FormerController::class, 'store'])->name('former.ajouter');
 
+        // Print
+        Route::view('/pdf', 'pages.formation.printpdf')->name('pdf');
+
     });
 });
 

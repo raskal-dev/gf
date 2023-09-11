@@ -40,16 +40,12 @@
                                     <span class="fw-bold">Matricule : </span><span>{{ $personne->matricule }}</span><br><br>
                                     <span class="fw-bold">Formation : </span><br><span>{{ $personne->formation->module }}</span><br><br>
                                     <span class="fw-bold">CIN : </span><br><span>
-                                            @if($personne->formation->cin == "")
-                                                @if($personne->age <= 1)
+                                            {{-- @if($personne->formation->cin == "" || $personne->age <= 1)
                                                     {{ $personne->age }} an
-                                                @else
-                                                    {{ $personne->age }} ans
-                                                @endif
                                             @else
-                                                {{ $personne->formation->cin }}
-
-                                            @endif
+                                                    {{ $personne->age }} ans
+                                            @endif --}}
+                                            {{ $personne->demande->cin }}
                                         </span><br><br>
                                     <span class="fw-bold">Date de naissace :
                                         @php
