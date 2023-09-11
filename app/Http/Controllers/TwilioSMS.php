@@ -51,6 +51,7 @@ class TwilioSMS extends Controller
         $sms->date_nais = $data['DN'];
         $sms->cin = $data['CIN'];
         $sms->sexe = $data['Sexe'];
+        $sms->demande = $data['Demande'];
         $sms->save();
 
         // Répondre au SMS avec un message de confirmation
