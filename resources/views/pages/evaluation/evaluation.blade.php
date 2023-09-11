@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="head shadow-lg p-3 mb-5 bg-body-tertiary rounded titrehead">
-            <h1 class="text-center text text-info">{{ $formation->module }}</h1>
+            <h1 class="text-center text text-info">{{ $personne->nom }} {{ $personne->prenom }}</h1>
         </div>
 
         <div class="row">
@@ -22,6 +22,9 @@
         <br><br>
         <div class="row">
 
+        </div>
+        <div class="col-xl-6">
+
             <table style="border: 1px" class="table table-hover table-bordered">
                 <thead class="bg-black text-white">
                     <tr>
@@ -36,7 +39,7 @@
                         <td>{{ $pf->matricule }}</td>
                         <td>{{ $pf->demande->nom }} {{ $pf->demande->prenom }}</td>
                         <td>
-                            <a href="route('evaluation', ['id_pers' => $pf->id, 'id_for' => $formation->id])" class="btn btn-primary rounded-pill" title="Evaluer">Evaluer <i class="fa-solid fa-circle-chevron-right"></i></a>
+                            <a href="#" class="btn btn-primary rounded-pill" title="Evaluer">Evaluer <i class="fa-solid fa-circle-chevron-right"></i></a>
                             <span class="m-1"></span>
                             <a href="#" class="btn btn-warning rounded-pill" title="Exporter PDF"><i class="fa-solid fa-file-export"></i></a>
                         </td>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DemandeController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\FormateurController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\FormerController;
@@ -80,11 +81,15 @@ Route::middleware('prevent-back-history')->group(function () {
         // FORMER
         Route::post('/former/ajouter', [FormerController::class, 'store'])->name('former.ajouter');
 
+        // EVALUATION
+        Route::get('/evaluation/personne:{id_pers}/formation:{id_for}', [EvaluationController::class, 'index'])->name('evaluation');
+
         // PRINT
         Route::view('/pdf', 'pages.formation.printpdf')->name('pdf');
 
         // TWILIO
         Route::get('/sms', [TwilioSMS::class, 'index'])->name('sms');
+        Route::post('/recievesms', [TwilioSMS::class, 'processIncomingSMS'])->name('processIncomingSMS');
 
     });
 });
