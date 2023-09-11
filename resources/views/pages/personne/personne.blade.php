@@ -41,9 +41,9 @@
                                     <span class="fw-bold">Formation : </span><br><span>{{ $personne->formation->module }}</span><br><br>
                                     <span class="fw-bold">CIN : </span><br><span>
                                             {{-- @if($personne->formation->cin == "" || $personne->age <= 1)
-                                                    {{ $personne->age }} an
+                                                {{ $personne->age }} an
                                             @else
-                                                    {{ $personne->age }} ans
+                                                {{ $personne->age }} ans
                                             @endif --}}
                                             {{ $personne->demande->cin }}
                                         </span><br><br>
