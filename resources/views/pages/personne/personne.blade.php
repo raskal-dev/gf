@@ -53,7 +53,6 @@
                                             $dateNaisFormat = $dateNais->format('d/m/Y');
                                         @endphp
 
-
                                     </span><br>
                                     <span>{{ $dateNaisFormat }}</span><br><br>
                                     <span class="fw-bold">Genre : </span><br>

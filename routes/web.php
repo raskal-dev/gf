@@ -5,6 +5,7 @@ use App\Http\Controllers\FormateurController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\FormerController;
 use App\Http\Controllers\PersonneController;
+use App\Http\Controllers\TwilioSMS;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -79,8 +80,11 @@ Route::middleware('prevent-back-history')->group(function () {
         // FORMER
         Route::post('/former/ajouter', [FormerController::class, 'store'])->name('former.ajouter');
 
-        // Print
+        // PRINT
         Route::view('/pdf', 'pages.formation.printpdf')->name('pdf');
+
+        // TWILIO
+        Route::get('/sms', [TwilioSMS::class, 'index'])->name('sms');
 
     });
 });
