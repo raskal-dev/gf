@@ -5,6 +5,7 @@ use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\FormateurController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\FormerController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PersonneController;
 use App\Http\Controllers\TwilioSMS;
 use App\Http\Controllers\UserAuthController;
@@ -83,6 +84,7 @@ Route::middleware('prevent-back-history')->group(function () {
 
         // EVALUATION
         Route::get('/evaluation/personne:{id_pers}/formation:{id_for}', [EvaluationController::class, 'index'])->name('evaluation');
+        Route::get('/evaluation/note/ev:{id_ev}', [EvaluationController::class, 'showNote'])->name('evaluation.note.ajouter');
 
         // PRINT
         Route::view('/pdf', 'pages.formation.printpdf')->name('pdf');
@@ -90,6 +92,9 @@ Route::middleware('prevent-back-history')->group(function () {
         // TWILIO
         Route::get('/sms', [TwilioSMS::class, 'index'])->name('sms');
         Route::post('/recievesms', [TwilioSMS::class, 'processIncomingSMS'])->name('processIncomingSMS');
+
+        // NOTE
+        Route::post('/note/ajouter/ev:{id_ev}', [NoteController::class, 'store'])->name('note.ajouter');
 
         // RETOUR
         Route::get('/retour', function () {
