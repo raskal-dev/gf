@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
+use App\Models\Formation;
+use App\Models\Personne;
 use Illuminate\Http\Request;
 
 class EvaluationController extends Controller
@@ -12,9 +14,21 @@ class EvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $id_pers = $request->id_pers;
+        $id_for = $request->id_for;
+
+        $personnes = Personne::all();
+        $formations = Formation::all();
+
+        $personne = $personnes->find($id_pers);
+        $formation = $formations->find($id_for);
+
+        return view('pages.evaluation.evaluation', compact(
+            'personne',
+            'formation'
+        ));
     }
 
     /**

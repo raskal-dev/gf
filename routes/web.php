@@ -91,6 +91,11 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::get('/sms', [TwilioSMS::class, 'index'])->name('sms');
         Route::post('/recievesms', [TwilioSMS::class, 'processIncomingSMS'])->name('processIncomingSMS');
 
+        // RETOUR
+        Route::get('/retour', function () {
+            return redirect()->back();
+        })->name('retour');
+
     });
 });
 

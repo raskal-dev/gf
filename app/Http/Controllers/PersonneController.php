@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\FonctionAction;
 use App\Models\Demande;
+use App\Models\Evaluation;
 use App\Models\Formation;
 use App\Models\Personne;
 use Carbon\Carbon;
@@ -63,10 +64,11 @@ class PersonneController extends Controller
 
         $request->validate([
             'id_dem' => 'required',
-            'id_for' => 'required'
+            'id_for' => 'required',
+            'annee' => 'required|min:4|max:4'
         ]);
 
-        Personne::create([
+        $personne = Personne::create([
             'matricule' => $matricule,
             'id_dem' => $request->id_dem,
             'id_for' => $request->id_for
@@ -78,6 +80,12 @@ class PersonneController extends Controller
 
         $demandeselect->update([
             'isinscrit' => true
+        ]);
+
+        Evaluation::create([
+            'id_pers' => $personne->id,
+            'id_for' => $request->id_for,
+            'annee' => $request->annee
         ]);
 
         return redirect()->route('personne')->with('success', "Operation réussi avec success !.");

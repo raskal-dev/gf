@@ -33,6 +33,11 @@
             </label>
 
             <label class="labelName">
+                <input type="text" id="annee" name="annee" class="inputName" placeholder="Année"/>
+                <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('annee') {{$message}} @enderror</b></span>
+            </label>
+
+            <label class="labelName">
                 <select name="id_for" id="id_for" class="inputName">
                     <option value=""> --- Selection une formation --- </option>
                     @foreach ($formations as $formation)

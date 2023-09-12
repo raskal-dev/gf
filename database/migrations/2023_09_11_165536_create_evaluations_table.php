@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pers')->constrained('personnes')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('id_for')->constrained('formations')->onUpdate('cascade')->onDelete('cascade');
             $table->string('annee', 4);
             $table->timestamps();
         });

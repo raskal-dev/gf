@@ -11,6 +11,17 @@ class Evaluation extends Model
 
     protected $fillable = [
         'id_pers',
+        'id_for',
         'annee'
     ];
+
+    public function personne()
+    {
+        return $this->belongsTo(Personne::class, 'id_pers', 'id');
+    }
+
+    public function formation()
+    {
+        return $this->belongsTo(Formation::class, 'id_for', 'id');
+    }
 }

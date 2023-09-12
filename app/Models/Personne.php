@@ -24,4 +24,9 @@ class Personne extends Model
     {
         return $this->belongsTo(Formation::class, 'id_for', 'id');
     }
+
+    public function evaluation()
+    {
+        return $this->hasMany(Personne::class, 'id_pers', 'id');
+    }
 }

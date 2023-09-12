@@ -26,4 +26,9 @@ class Formation extends Model
     {
         return $this->hasMany(Former::class, 'id_for', 'id');
     }
+
+    public function evaluation()
+    {
+        return $this->hasMany(Evaluation::class, 'id_for', 'id');
+    }
 }

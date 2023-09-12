@@ -36,7 +36,7 @@
                         <td>{{ $pf->matricule }}</td>
                         <td>{{ $pf->demande->nom }} {{ $pf->demande->prenom }}</td>
                         <td>
-                            <a href="route('evaluation', ['id_pers' => $pf->id, 'id_for' => $formation->id])" class="btn btn-primary rounded-pill" title="Evaluer">Evaluer <i class="fa-solid fa-circle-chevron-right"></i></a>
+                            <a href="{{ route('evaluation', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-primary rounded-pill" title="Evaluer">Evaluer <i class="fa-solid fa-circle-chevron-right"></i></a>
                             <span class="m-1"></span>
                             <a href="#" class="btn btn-warning rounded-pill" title="Exporter PDF"><i class="fa-solid fa-file-export"></i></a>
                         </td>
