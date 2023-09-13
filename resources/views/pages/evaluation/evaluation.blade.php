@@ -110,7 +110,11 @@
                                 <tr class="">
                                     <td scope="row">{{ $notesev->label }}</td>
                                     <td>{{ $notesev->note }}</td>
-                                    <td>R1C3</td>
+                                    <td>
+                                        <a href="{{ route('note.show', ['note' => $notesev->id]) }}" class="fs-4 rounded-pill" title="Modifier"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <span class="m-1"></span>
+                                        <a href="#" class="fs-4 text-danger rounded-pill" title="Supprimer"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

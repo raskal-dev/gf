@@ -40,6 +40,7 @@ class NoteController extends Controller
     {
         $id_pers = $request->id_pers;
         $id_for = $request->id_for;
+        $id_ev = $request->id_ev;
         $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
         $personnes = Personne::all();
         $formations = Formation::all();
@@ -47,19 +48,25 @@ class NoteController extends Controller
         $personne = $personnes->find($id_pers);
         $formation = $formations->find($id_for);
 
-        $id_ev = $request->id_ev;
-        $request->validate([
-            'label' => 'required',
-            'note' => 'required'
-        ]);
+        $testnote = Note::whereRaw("id_ev = '$id_ev' AND label = '$request->label'")->count();
 
-        Note::create([
-            'id_ev' => $id_ev,
-            'label' => $request->label,
-            'note' => $request->note
-        ]);
+        if ($testnote > 0) {
+            return back()->with('error', 'La note "'.$request->label.'" est déjà inscrit. Veillez inscrire une autre note, s\'il vous plait.');
+        } else {
+            $request->validate([
+                'label' => 'required',
+                'note' => 'required'
+            ]);
 
-        return redirect()->route('evaluation', ['id_pers' => $personne->id, 'id_for' => $formation->id])->with('success', "Note a été ajouter avec succès.");
+            Note::create([
+                'id_ev' => $id_ev,
+                'label' => $request->label,
+                'note' => $request->note
+            ]);
+
+            return redirect()->route('evaluation', ['id_pers' => $personne->id, 'id_for' => $formation->id])->with('success', "Note a été ajouter avec succès.");
+        }
+
     }
 
     /**
@@ -70,7 +77,12 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        //
+        $notes = Note::all();
+        $noteone = $notes->find($note);
+
+        return view('pages.note.noteUpdate', compact(
+            'noteone'
+        ));
     }
 
     /**
