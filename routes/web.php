@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->name('home.laravel');
 
 Route::get('/Logout', [UserAuthController::class, 'logout'])->name('logout');
@@ -84,7 +84,7 @@ Route::middleware('prevent-back-history')->group(function () {
 
         // EVALUATION
         Route::get('/evaluation/personne:{id_pers}/formation:{id_for}', [EvaluationController::class, 'index'])->name('evaluation');
-        Route::get('/evaluation/note/ev:{id_ev}', [EvaluationController::class, 'showNote'])->name('evaluation.note.ajouter');
+        Route::get('/evaluation/note/ev:{id_ev}{id_pers}{id_for}', [EvaluationController::class, 'showNote'])->name('evaluation.note.ajouter');
 
         // PRINT
         Route::view('/pdf', 'pages.formation.printpdf')->name('pdf');

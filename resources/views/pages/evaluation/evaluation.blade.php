@@ -8,6 +8,26 @@
         </div>
 
         <div class="row">
+            <div class="col-xl-12">
+                <section>
+                    @if(session()->has("success"))
+                        <div class="alert alert-success">
+                            <h3>{{ session()->get('success') }}</h3>
+                        </div>
+                    @elseif (session()->has("errordelete"))
+                        <div class="alert alert-danger">
+                            <h4>{{ session()->get('errordelete') }}</h4>
+                        </div>
+                    @elseif (session()->has("error"))
+                        <div class="alert alert-danger">
+                            <h4>{{ session()->get('error') }}</h4>
+                        </div>
+                    @endif
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-3">
                 <div class="product-box position-relative">
                     <div class="icons">
@@ -70,7 +90,7 @@
             </div>
         </div>
         <div class="row m-3">
-            <a href="{{ route('evaluation.note.ajouter', ['id_ev' => $evaluation->id]) }}" class="redSubmit text-decoration-none text-dark"><i class="fa-solid fa-file-circle-plus"></i> Note</a>
+            <a href="{{ route('evaluation.note.ajouter', ['id_ev' => $evaluation->id, 'id_pers' => $personne->id, 'id_for' => $formation->id]) }}" class="redSubmit text-decoration-none text-dark"><i class="fa-solid fa-file-circle-plus"></i> Note</a>
 
         </div>
         <div class="row m-4">
@@ -86,21 +106,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="">
-                                <td scope="row">Physique</td>
-                                <td>15</td>
-                                <td>R1C3</td>
-                            </tr>
-                            <tr class="">
-                                <td scope="row">Item</td>
-                                <td>Item</td>
-                                <td>Item</td>
-                            </tr>
-                        </tbody>
+                            @foreach ($notesevs as $notesev)
+                                <tr class="">
+                                    <td scope="row">{{ $notesev->label }}</td>
+                                    <td>{{ $notesev->note }}</td>
+                                    <td>R1C3</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
                     </table>
                 </div>
-
-
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-primary fs-4">
+                <span class="fw-bold">Moyenne : </span><span>{{ $moyentype }}/20</span>
             </div>
         </div>
     </div>

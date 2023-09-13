@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evaluation;
+use App\Models\Formation;
 use App\Models\Note;
+use App\Models\Personne;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -35,7 +38,28 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id_pers = $request->id_pers;
+        $id_for = $request->id_for;
+        $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
+        $personnes = Personne::all();
+        $formations = Formation::all();
+
+        $personne = $personnes->find($id_pers);
+        $formation = $formations->find($id_for);
+
+        $id_ev = $request->id_ev;
+        $request->validate([
+            'label' => 'required',
+            'note' => 'required'
+        ]);
+
+        Note::create([
+            'id_ev' => $id_ev,
+            'label' => $request->label,
+            'note' => $request->note
+        ]);
+
+        return redirect()->route('evaluation', ['id_pers' => $personne->id, 'id_for' => $formation->id])->with('success', "Note a été ajouter avec succès.");
     }
 
     /**

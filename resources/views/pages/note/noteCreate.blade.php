@@ -30,7 +30,7 @@
         </div>
         <br>
 
-        <form class="formupdateuser" method="POST" action="{{ route('note.ajouter', ['id_ev' => $evaluation->id]) }}">
+        <form class="formupdateuser" method="POST" action="{{ route('note.ajouter', ['id_ev' => $evaluation->id, 'id_pers' => $personne->id, 'id_for' => $formation->id]) }}">
             @csrf
 
             <label class="labelName">
@@ -45,7 +45,8 @@
 
             <div class="btn-inline">
                 <button class="blueSubmit" type="submit">Envoyer</button>
-                <button class="redSubmit" type="submit">Retour</button>
+                {{-- <button class="redSubmit" type="submit">Retour</button> --}}
+                <a class="redSubmit" href="{{ url()->previous() }}">Retour</a>
             </div>
 
           </form>

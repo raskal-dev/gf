@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
 use App\Models\Formation;
+use App\Models\Note;
 use App\Models\Personne;
 use Illuminate\Http\Request;
 
@@ -27,21 +28,40 @@ class EvaluationController extends Controller
         $personne = $personnes->find($id_pers);
         $formation = $formations->find($id_for);
 
+        $notesevs = Note::where('id_ev', $evaluation->id)->get();
+        $notesevsCount = (double)$notesevs->count();
+        $moyenne = (double)$notesevs->sum('note') / (double)$notesevsCount;
+        $moyen = number_format($moyenne, 2, '.', '');
+        $moyentype = (double)$moyen;
+
         return view('pages.evaluation.evaluation', compact(
             'personne',
             'formation',
-            'evaluation'
+            'evaluation',
+            'notesevs',
+            'moyentype'
         ));
     }
 
     public function showNote(Request $request)
     {
+        $id_pers = $request->id_pers;
+        $id_for = $request->id_for;
+        $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
+        $personnes = Personne::all();
+        $formations = Formation::all();
+
+        $personne = $personnes->find($id_pers);
+        $formation = $formations->find($id_for);
+
         $id_ev = $request->id_ev;
         $evaluations = Evaluation::all();
         $evaluation = $evaluations->find($id_ev);
 
         return view('pages.note.noteCreate', compact(
-            'evaluation'
+            'evaluation',
+            'personne',
+            'formation'
         ));
     }
 

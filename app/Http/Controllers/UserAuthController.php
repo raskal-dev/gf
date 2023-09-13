@@ -51,10 +51,10 @@ class UserAuthController extends Controller
                 $request -> session() -> put('user_id_auth', $user -> id);
                 return redirect('menu');
             } else {
-                return back() -> with('fail', 'Votre mot de passe est incorrect');
+                return back() -> with('fail', 'Mot de passe incorrect');
             }
         } else {
-            return back() -> with('fail', 'Votre Email est incorrect');
+            return back() -> with('fail', 'Email est incorrect');
         }
 
     }
