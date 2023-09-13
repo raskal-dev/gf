@@ -30,9 +30,17 @@ class EvaluationController extends Controller
 
         $notesevs = Note::where('id_ev', $evaluation->id)->get();
         $notesevsCount = (double)$notesevs->count();
-        $moyenne = (double)$notesevs->sum('note') / (double)$notesevsCount;
-        $moyen = number_format($moyenne, 2, '.', '');
-        $moyentype = (double)$moyen;
+        // $moyenne = (double)$notesevs->sum('note') / (double)$notesevsCount;
+        // $moyen = number_format($moyenne, 2, '.', '');
+        // $moyentype = (double)$moyen;
+
+        if ($notesevsCount > 0) {
+            $moyenne = $notesevs->sum('note') / $notesevsCount;
+            $moyen = number_format($moyenne, 2, '.', '');
+            $moyentype = (double)$moyen;
+        } else {
+            $moyentype = 0.0;
+        }
 
         return view('pages.evaluation.evaluation', compact(
             'personne',
