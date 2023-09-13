@@ -9,6 +9,7 @@ use App\Models\Formation;
 use App\Models\Personne;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PersonneController extends Controller
 {
@@ -177,6 +178,15 @@ class PersonneController extends Controller
      */
     public function destroy(Personne $personne)
     {
-        //
+        $pd = $personne->demande;
+        if (DB::table('evaluations')->where('id_pers', $personne->id)->exists()) {
+            return redirect()->route('personne')->with('errordelete', "La personne '$pd->nom $pd->prenom' ne peut pas être supprimer car elle est encore attaché à Evaluation");
+        } else {
+            // Supprimer le cité de la base de données
+            $personne->delete();
+
+            // Rediriger l'utilisateur vers la liste des agences avec un message de confirmation
+            return redirect()->route('personne')->with('success', "La personne '$pd->nom $pd->prenom' a été supprimer avec success");
+        }
     }
 }

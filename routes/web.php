@@ -71,6 +71,7 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::post('/persionne', [PersonneController::class, 'store'])->name('personne.ajout');
         Route::get('/persionne/update/{personne}', [PersonneController::class, 'show'])->name('personne.show');
         Route::post('/persionne/update/personne:{idper}/demande:{iddem}', [PersonneController::class, 'update'])->name('personne.update');
+        Route::delete('/persionne/delete/personne:{personne}', [PersonneController::class, 'destroy'])->name('personne.delete');
 
         // FORMATUER
         Route::get('/formateur', [FormateurController::class, 'index'])->name('formateur');
@@ -98,6 +99,7 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::put('/note/update/ev:{note}{id_pers}{id_for}', [NoteController::class, 'update'])->name('note.update');
         Route::get('/note/show/note:{note}{id_pers}{id_for}', [NoteController::class, 'show'])->name('note.show');
         Route::delete('/note:{note}', [NoteController::class, 'destroy'])->name('note.delete');
+        Route::get('/note/relevernote:{id_pers}{id_for}', [NoteController::class, 'printNote'])->name('note.pdf');
 
         // RETOUR
         Route::get('/retour', function () {

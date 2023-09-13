@@ -29,6 +29,7 @@
         <form class="formupdateuser" method="POST" action="{{ route('note.update', ['note' => $noteone->id, 'id_ev' => $evaluation->id, 'id_pers' => $personne->id, 'id_for' => $formation->id]) }}">
             @csrf
 
+            <input type="hidden" name="_method" value="put">
             <label class="labelName">
                 <input type="text" id="label" name="label" class="inputName" placeholder="Label" value="{{ $noteone->label }}"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('label') {{$message}} @enderror</b></span>

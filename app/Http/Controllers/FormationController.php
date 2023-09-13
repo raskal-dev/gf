@@ -96,8 +96,6 @@ class FormationController extends Controller
             'formation'
         ));
 
-        $now = Carbon::now();
-
         return $pdf->download('fichepresence.pdf');
     }
 

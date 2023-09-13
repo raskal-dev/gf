@@ -38,7 +38,9 @@
                         <td>
                             <a href="{{ route('evaluation', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-primary rounded-pill" title="Evaluer">Evaluer <i class="fa-solid fa-circle-chevron-right"></i></a>
                             <span class="m-1"></span>
-                            <a href="#" class="btn btn-warning rounded-pill" title="Exporter PDF"><i class="fa-solid fa-file-export"></i></a>
+                            <a href="{{ route('note.pdf', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-warning rounded-pill" title="Exporter Relever"><i class="fa-solid fa-file-export"></i></a>
+                            <span class="m-1"></span>
+                            <a href="#" class="btn btn-info rounded-pill" title="Certificat"><i class="fa-solid fa-award"></i></a>
                         </td>
                     </tr>
                     @endforeach

@@ -72,9 +72,9 @@
                                     <a href="{{ route('personne.show', ['personne' => $personne->id]) }}"><i class="fa-regular fa-pen-to-square"></i></a>
                                     <span class="p-2"></span>
                                     <span class="text-danger">
-                                        <a href="#"><i class="text-danger fa-solid fa-trash-can" onclick="if(confirm('Vous-voulez vraiment supprimer cette cite ?')){document.getElementById('form-1').submit() }"></i></a>
+                                        <a href="#"><i class="text-danger fa-solid fa-trash-can" onclick="if(confirm('Vous-voulez vraiment supprimer cette personne ?')){document.getElementById('form-{{ $personne->id }}').submit() }"></i></a>
                                     </span>
-                                    <form id="form-1" action="#" method="post">
+                                    <form id="form-{{ $personne->id }}" action="{{ route('personne.delete', ['personne' => $personne->id]) }}" method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="delete">
                                     </form>
