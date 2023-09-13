@@ -39,7 +39,7 @@
             </label>
 
             <label class="labelName">
-                <input type="number" id="note" name="note" class="inputName" placeholder="Note"/>
+                <input type="text" id="note" name="note" class="inputName" placeholder="Note"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('note') {{$message}} @enderror</b></span>
             </label>
 

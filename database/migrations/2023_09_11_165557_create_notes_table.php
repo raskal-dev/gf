@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_ev')->constrained('evaluations')->onUpdate('cascade')->onDelete('cascade');
             $table->string('label');
-            $table->double('note', 5.2);
+            $table->double('note', 5, 2);
             $table->timestamps();
         });
     }

@@ -111,9 +111,14 @@
                                     <td scope="row">{{ $notesev->label }}</td>
                                     <td>{{ $notesev->note }}</td>
                                     <td>
-                                        <a href="{{ route('note.show', ['note' => $notesev->id]) }}" class="fs-4 rounded-pill" title="Modifier"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('note.show', ['note' =>$notesev->id, 'id_ev' => $evaluation->id, 'id_pers' => $personne->id, 'id_for' => $formation->id]) }}" class="fs-4 rounded-pill" title="Modifier"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <span class="m-1"></span>
-                                        <a href="#" class="fs-4 text-danger rounded-pill" title="Supprimer"><i class="fa-solid fa-trash-can"></i></a>
+                                        {{-- <a href="#" class="fs-4 text-danger rounded-pill" title="Supprimer"><i class="fa-solid fa-trash-can"></i></a> --}}
+                                        <a href="#" class="fs-4 text-danger rounded-pill" title="Supprimer"><i class="fa-solid fa-trash-can" onclick="if(confirm('Vous-voulez vraiment supprimer cette note ?')){document.getElementById('form-{{ $notesev->id }}').submit() }"></i></a>
+                                        <form id="form-{{ $notesev->id }}" action="{{ route('note.delete', ['note' => $notesev->id]) }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="delete">
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

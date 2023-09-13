@@ -7,6 +7,7 @@ use App\Models\Formation;
 use App\Models\Note;
 use App\Models\Personne;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Cast\Double;
 
 class NoteController extends Controller
 {
@@ -49,7 +50,9 @@ class NoteController extends Controller
         $formation = $formations->find($id_for);
 
         $testnote = Note::whereRaw("id_ev = '$id_ev' AND label = '$request->label'")->count();
-
+        setlocale(LC_NUMERIC, 'fr_FR');
+        $notedouble = (Double) str_replace(',', '.', $request->note);
+        $noteformat = number_format($notedouble, 2, ',', '');
         if ($testnote > 0) {
             return back()->with('error', 'La note "'.$request->label.'" est déjà inscrit. Veillez inscrire une autre note, s\'il vous plait.');
         } else {
@@ -61,7 +64,7 @@ class NoteController extends Controller
             Note::create([
                 'id_ev' => $id_ev,
                 'label' => $request->label,
-                'note' => $request->note
+                'note' => $noteformat
             ]);
 
             return redirect()->route('evaluation', ['id_pers' => $personne->id, 'id_for' => $formation->id])->with('success', "Note a été ajouter avec succès.");
@@ -75,13 +78,25 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function show(Note $note)
+    public function show(Note $note, Request $request)
     {
         $notes = Note::all();
         $noteone = $notes->find($note);
 
+        $id_pers = $request->id_pers;
+        $id_for = $request->id_for;
+        $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
+        $personnes = Personne::all();
+        $formations = Formation::all();
+
+        $personne = $personnes->find($id_pers);
+        $formation = $formations->find($id_for);
+
         return view('pages.note.noteUpdate', compact(
-            'noteone'
+            'noteone',
+            'evaluation',
+            'personne',
+            'formation'
         ));
     }
 
@@ -105,7 +120,37 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        //
+        $notes = Note::all();
+        $noteone = $notes->find($note);
+
+        $id_pers = $request->id_pers;
+        $id_for = $request->id_for;
+        $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
+        $personnes = Personne::all();
+        $formations = Formation::all();
+
+        $personne = $personnes->find($id_pers);
+        $formation = $formations->find($id_for);
+
+        $noteformat = number_format($request->note, 2, '.', '');
+
+        $request->validate([
+            'label' => 'required',
+            'note' => 'required'
+        ]);
+
+        $noteone->update([
+            'label' => $request->label,
+            'note' => (double)$noteformat
+        ]);
+
+        // return view('pages.note.noteUpdate', compact(
+        //     'noteone',
+        //     'evaluation',
+        //     'personne',
+        //     'formation'
+        // ));
+        return redirect()->route('evaluation', ['id_pers' => $personne->id, 'id_for' => $formation->id])->with('success', "Note a été mise à jour avec succès.");
     }
 
     /**
@@ -116,6 +161,7 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
+        $note->delete();
+        return back()->with('success', "La note a été supprimer avec succès");
     }
 }

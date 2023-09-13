@@ -95,8 +95,9 @@ Route::middleware('prevent-back-history')->group(function () {
 
         // NOTE
         Route::post('/note/ajouter/ev:{id_ev}', [NoteController::class, 'store'])->name('note.ajouter');
-        Route::post('/note/update/ev:{id_ev}', [NoteController::class, 'update'])->name('note.update');
-        Route::get('/note/show/note:{note}', [NoteController::class, 'show'])->name('note.show');
+        Route::put('/note/update/ev:{note}{id_pers}{id_for}', [NoteController::class, 'update'])->name('note.update');
+        Route::get('/note/show/note:{note}{id_pers}{id_for}', [NoteController::class, 'show'])->name('note.show');
+        Route::delete('/note:{note}', [NoteController::class, 'destroy'])->name('note.delete');
 
         // RETOUR
         Route::get('/retour', function () {
