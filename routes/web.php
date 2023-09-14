@@ -101,6 +101,9 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::delete('/note:{note}', [NoteController::class, 'destroy'])->name('note.delete');
         Route::get('/note/relevernote:{id_pers}{id_for}', [NoteController::class, 'printNote'])->name('note.pdf');
 
+        // Message
+        Route::post('/receive-sms', [MessageController::class, 'receive']);
+
         // RETOUR
         Route::get('/retour', function () {
             return redirect()->back();
