@@ -44,15 +44,17 @@ Route::middleware('prevent-back-history')->group(function () {
     Route::middleware('isLogged')->group(function () {
 
         // DEMANDE POUR PUBLEQUE
-        Route::get('/demande', [DemandeController::class, 'create'])->name('demande.form');
-        Route::post('/demande/ajouter', [DemandeController::class, 'store'])->name('demande.ajouter');
+        Route::get('/demande', [DemandeController::class, 'getFormInscritDemande'])->name('demande.form');
+        Route::post('/demande/ajouter', [DemandeController::class, 'addDemande'])->name('demande.ajouter');
         // DEMANDE
-        Route::get('/demande/liste', [DemandeController::class, 'index'])->name('demande.liste');
-        Route::get('/demande/accepte/{id_demande}', [DemandeController::class, 'formAccepte'])->name('demande.form.accepte');
+        Route::get('/demande/liste', [DemandeController::class, 'getDemandeNoInscrit'])->name('demande.liste');
+        Route::get('/demande/accepte/{id_demande}', [DemandeController::class, 'getFormAccepte'])->name('demande.form.accepte');
 
+        // User
         Route::view('/register', 'auth.register')->name('user.register');
         Route::post('/register-user', [UserAuthController::class, 'store'])->name('user.ajouter.register');
 
+        // Profile
         Route::get('menu', [UserAuthController::class, 'dash'])->name('home.dash');
         Route::get('profile', [UserAuthController::class, 'profile'])->name('user.profile');
         Route::put('profile_user/{user}', [UserAuthController::class, 'update'])->name('update.profile');
@@ -60,32 +62,30 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::delete('profile/{user}', [UserAuthController::class, 'destroy'])->name('user.delete');
 
         // FORMATION
-        Route::get('/formation', [FormationController::class, 'index'])->name('formation');
-        Route::get('/formation/create', [FormationController::class, 'create'])->name('formation.create');
-        Route::post('/foramtsion/ajout', [FormationController::class, 'store'])->name('formation.ajout');
-        Route::get('/foramtsion/liste/personnes/{id_for}', [FormationController::class, 'personneFormation'])->name('formation.liste.personnes');
-        Route::get('/foramtsion/liste/personnes/pdf/{id_for}', [FormationController::class, 'printpdf'])->name('print.pdf');
+        Route::get('/formation', [FormationController::class, 'getFormation'])->name('formation');
+        Route::get('/formation/create', [FormationController::class, 'getFormFormation'])->name('formation.create');
+        Route::post('/foramtsion/ajout', [FormationController::class, 'addFormation'])->name('formation.ajout');
+        Route::get('/foramtsion/liste/personnes/{id_for}', [FormationController::class, 'getFersonneFormation'])->name('formation.liste.personnes');
+        Route::get('/foramtsion/liste/personnes/pdf/{id_for}', [FormationController::class, 'pdfFormation'])->name('print.pdf');
 
         // PERSONNE
-        Route::get('/personne', [PersonneController::class, 'index'])->name('personne');
-        Route::post('/persionne', [PersonneController::class, 'store'])->name('personne.ajout');
-        Route::get('/persionne/update/{personne}', [PersonneController::class, 'show'])->name('personne.show');
-        Route::post('/persionne/update/personne:{idper}/demande:{iddem}', [PersonneController::class, 'update'])->name('personne.update');
-        Route::delete('/persionne/delete/personne:{personne}', [PersonneController::class, 'destroy'])->name('personne.delete');
+        Route::get('/personne', [PersonneController::class, 'getPersonne'])->name('personne');
+        Route::post('/persionne', [PersonneController::class, 'addPersonne'])->name('personne.ajout');
+        Route::get('/persionne/update/{personne}', [PersonneController::class, 'getPersonneUpdate'])->name('personne.show');
+        Route::post('/persionne/update/personne:{idper}/demande:{iddem}', [PersonneController::class, 'updatePersonne'])->name('personne.update');
+        Route::delete('/persionne/delete/personne:{personne}', [PersonneController::class, 'destroyPersonne'])->name('personne.delete');
 
         // FORMATUER
-        Route::get('/formateur', [FormateurController::class, 'index'])->name('formateur');
-        Route::get('/formateur/create', [FormateurController::class, 'create'])->name('formateur.create');
-        Route::post('/formateur/ajouter', [FormateurController::class, 'store'])->name('formateur.ajouter');
-        Route::get('/formateur/info/{id_form}', [FormateurController::class, 'info'])->name('formateur.info');
-        Route::get('/formateur/contrat/{id_form}', [FormateurController::class, 'contrat'])->name('formateur.contrat');
-
-        // FORMER
-        Route::post('/former/ajouter', [FormerController::class, 'store'])->name('former.ajouter');
+        Route::get('/formateur', [FormateurController::class, 'getFormateur'])->name('formateur');
+        Route::get('/formateur/create', [FormateurController::class, 'getFormFormateur'])->name('formateur.create');
+        Route::post('/formateur/ajouter', [FormateurController::class, 'addFormateur'])->name('formateur.ajouter');
+        Route::get('/formateur/info/{id_form}', [FormateurController::class, 'getFormationFormateur'])->name('formateur.info');
+        Route::get('/formateur/contrat/{id_form}', [FormateurController::class, 'getFormContrat'])->name('formateur.contrat');
+        Route::post('/former/ajouter', [FormateurController::class, 'addContrat'])->name('former.ajouter');
 
         // EVALUATION
-        Route::get('/evaluation/personne:{id_pers}/formation:{id_for}', [EvaluationController::class, 'index'])->name('evaluation');
-        Route::get('/evaluation/note/ev:{id_ev}{id_pers}{id_for}', [EvaluationController::class, 'showNote'])->name('evaluation.note.ajouter');
+        Route::get('/evaluation/personne:{id_pers}/formation:{id_for}', [EvaluationController::class, 'getEvaluation'])->name('evaluation');
+        Route::get('/evaluation/note/ev:{id_ev}{id_pers}{id_for}', [EvaluationController::class, 'getNote'])->name('evaluation.note.ajouter');
 
         // PRINT
         Route::view('/pdf', 'pages.formation.printpdf')->name('pdf');
@@ -95,14 +95,15 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::post('/recievesms', [TwilioSMS::class, 'processIncomingSMS'])->name('processIncomingSMS');
 
         // NOTE
-        Route::post('/note/ajouter/ev:{id_ev}', [NoteController::class, 'store'])->name('note.ajouter');
-        Route::put('/note/update/ev:{note}{id_pers}{id_for}', [NoteController::class, 'update'])->name('note.update');
-        Route::get('/note/show/note:{note}{id_pers}{id_for}', [NoteController::class, 'show'])->name('note.show');
-        Route::delete('/note:{note}', [NoteController::class, 'destroy'])->name('note.delete');
-        Route::get('/note/relevernote:{id_pers}{id_for}', [NoteController::class, 'printNote'])->name('note.pdf');
+        Route::post('/note/ajouter/ev:{id_ev}', [NoteController::class, 'addNote'])->name('note.ajouter');
+        Route::put('/note/update/ev:{note}{id_pers}{id_for}', [NoteController::class, 'updateNote'])->name('note.update');
+        Route::get('/note/show/note:{note}{id_pers}{id_for}', [NoteController::class, 'getFormUpdateNote'])->name('note.show');
+        Route::delete('/note:{note}', [NoteController::class, 'destroyNote'])->name('note.delete');
+        Route::get('/note/relevernote:{id_pers}{id_for}', [NoteController::class, 'pdfNote'])->name('note.pdf');
 
         // Message
         Route::post('/receive-sms', [MessageController::class, 'receive']);
+        Route::get('/receive-sms', [MessageController::class, 'receiveSms']);
 
         // RETOUR
         Route::get('/retour', function () {

@@ -15,7 +15,7 @@ class FormationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getFormation()
     {
         $formations = Formation::orderBy('id', 'desc')->get();
         return view('pages.formation.formation', compact(
@@ -28,7 +28,7 @@ class FormationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getFormFormation()
     {
         return view('pages.formation.formationCreate');
     }
@@ -39,7 +39,7 @@ class FormationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addFormation(Request $request)
     {
         $ref = FonctionAction::getRef(6);
 
@@ -73,7 +73,7 @@ class FormationController extends Controller
 
     }
 
-    public function personneFormation(Request $request)
+    public function getFersonneFormation(Request $request)
     {
         $id_for = $request->id_for;
         $formation = Formation::find($id_for);
@@ -85,7 +85,7 @@ class FormationController extends Controller
         ));
     }
 
-    public function printpdf(Request $request)
+    public function pdfFormation(Request $request)
     {
         $id_for = $request->id_for;
         $formation = Formation::find($id_for);
@@ -95,6 +95,12 @@ class FormationController extends Controller
             'personnesFormations',
             'formation'
         ));
+
+        // pdf en paysage
+        // $pdf = PDF::loadView('pages.formation.printpdf', compact(
+        //     'personnesFormations',
+        //     'formation'
+        // ))->setPaper('A4', 'landscape');
 
         return $pdf->download('fichepresence.pdf');
     }

@@ -38,7 +38,7 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addNote(Request $request)
     {
         $id_pers = $request->id_pers;
         $id_for = $request->id_for;
@@ -79,7 +79,7 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function show(Note $note, Request $request)
+    public function getFormUpdateNote(Note $note, Request $request)
     {
         $notes = Note::all();
         $noteone = $notes->find($note);
@@ -119,7 +119,7 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Note $note)
+    public function updateNote(Request $request, Note $note)
     {
         $notes = Note::all();
         $noteone = $notes->find($note);
@@ -156,7 +156,7 @@ class NoteController extends Controller
         return redirect()->route('evaluation', ['id_pers' => $personne->id, 'id_for' => $formation->id])->with('success', "Note a été mise à jour avec succès.");
     }
 
-    public function printNote(Request $request)
+    public function pdfNote(Request $request)
     {
         $id_pers = $request->id_pers;
         $id_for = $request->id_for;
@@ -187,7 +187,7 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Note $note)
+    public function destroyNote(Note $note)
     {
         $note->delete();
         return back()->with('success', "La note a été supprimer avec succès");

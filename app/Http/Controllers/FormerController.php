@@ -33,7 +33,7 @@ class FormerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addContrat(Request $request)
     {
         $request->validate([
             'id_for' => 'required',

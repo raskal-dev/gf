@@ -14,7 +14,7 @@ class DemandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getDemandeNoInscrit()
     {
         $demandes = Demande::where('isinscrit', false)->orderBy('id', 'desc')->get();
         return view('pages.demande.demandeList', compact(
@@ -22,7 +22,7 @@ class DemandeController extends Controller
         ));
     }
 
-    public function formAccepte(Request $request)
+    public function getFormAccepte(Request $request)
     {
         $demandeid = $request->id_demande;
         $demandes = Demande::all();
@@ -43,7 +43,7 @@ class DemandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getFormInscritDemande()
     {
         return view('pages.demande.demande');
     }
@@ -54,7 +54,7 @@ class DemandeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addDemande(Request $request)
     {
         $request->validate([
             'nom' => "required",

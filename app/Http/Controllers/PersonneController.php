@@ -18,7 +18,7 @@ class PersonneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getPersonne()
     {
         $personnes = Personne::orderBy('id', 'desc')->get();
 
@@ -52,7 +52,7 @@ class PersonneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addPersonne(Request $request)
     {
         $latestPersonne = Personne::latest()->first();
         if ($latestPersonne !== null) {
@@ -99,7 +99,7 @@ class PersonneController extends Controller
      * @param  \App\Models\Personne  $personne
      * @return \Illuminate\Http\Response
      */
-    public function show(Personne $personne)
+    public function getPersonneUpdate(Personne $personne)
     {
         $personnes = Personne::all();
 
@@ -131,7 +131,7 @@ class PersonneController extends Controller
      * @param  \App\Models\Personne  $personne
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Personne $personne)
+    public function updatePersonne(Request $request, Personne $personne)
     {
         $id_dem = $request->iddem;
         $id_per = $request->idper;
@@ -176,7 +176,7 @@ class PersonneController extends Controller
      * @param  \App\Models\Personne  $personne
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Personne $personne)
+    public function destroyPersonne(Personne $personne)
     {
         $pd = $personne->demande;
         if (DB::table('evaluations')->where('id_pers', $personne->id)->exists()) {

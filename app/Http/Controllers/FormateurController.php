@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Formateur;
 use App\Models\Formation;
+use App\Models\Former;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class FormateurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getFormateur()
     {
 
         $formateurs = Formateur::orderBy('id', 'desc')->get();
@@ -23,7 +24,7 @@ class FormateurController extends Controller
         ));
     }
 
-    public function info(Request $request)
+    public function getFormationFormateur(Request $request)
     {
         // Utilisez $formateur_id pour obtenir le formateur spécifique
         $formateur = Formateur::find($request->id_form);
@@ -45,7 +46,7 @@ class FormateurController extends Controller
         ));
     }
 
-    public function contrat(Request $request)
+    public function getFormContrat(Request $request)
     {
         $formateurid = $request->id_form;
         $formateur = Formateur::find($formateurid);
@@ -64,7 +65,7 @@ class FormateurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getFormFormateur()
     {
         return view('pages.formateur.formateurCreate');
     }
@@ -75,7 +76,7 @@ class FormateurController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addFormateur(Request $request)
     {
         $request->validate([
             'nom_form' => 'required|max:50',
@@ -98,6 +99,21 @@ class FormateurController extends Controller
         ]);
 
         return back()->with('success', "Le formateur `$formateur->nom_form $formateur->prenom_form` est ajouté avec succès !");
+    }
+
+    public function addContrat(Request $request)
+    {
+        $request->validate([
+            'id_for' => 'required',
+            'id_form' => 'required'
+        ]);
+
+        Former::create([
+            'id_for' => $request->id_for,
+            'id_form' => $request->id_form
+        ]);
+
+        return redirect()->route('formateur.info', ['id_form' => $request->id_form])->with('success', 'Assigation est succès !');
     }
 
     /**

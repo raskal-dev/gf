@@ -15,7 +15,7 @@ class EvaluationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function getEvaluation(Request $request)
     {
         $id_pers = $request->id_pers;
         $id_for = $request->id_for;
@@ -51,7 +51,7 @@ class EvaluationController extends Controller
         ));
     }
 
-    public function showNote(Request $request)
+    public function getNote(Request $request)
     {
         $id_pers = $request->id_pers;
         $id_for = $request->id_for;
