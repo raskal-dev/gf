@@ -12,6 +12,7 @@
     <title>PDF</title>
 
     <style>
+
         .tableperso
         {
             border-collapse: collapse;
@@ -22,10 +23,22 @@
         {
             border: 1px solid #000;
         }
+
+        .image
+        {
+            margin: auto;
+        }
     </style>
   </head>
   <body>
     <div class="container">
+        <div class="row">
+            <div class="col-xl-12 d-flex justify-content-center align-items-center">
+                <div class="image">
+                    <img src="./build/assets/images/presidence-logo.jpg" alt="R" srcset="" class="img-fluid">
+                </div>
+            </div>
+        </div>
         <div class="head shadow-lg p-3 mb-5 bg-body-tertiary rounded titrehead">
             <h1 class="text-center text">{{ $formation->module }}</h1>
         </div>

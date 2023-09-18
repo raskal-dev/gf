@@ -6,10 +6,12 @@ use App\Actions\FonctionAction;
 use App\Models\Demande;
 use App\Models\Evaluation;
 use App\Models\Formation;
+use App\Models\Note;
 use App\Models\Personne;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class PersonneController extends Controller
 {
@@ -122,6 +124,43 @@ class PersonneController extends Controller
     public function edit(Personne $personne)
     {
         //
+    }
+
+    public function certificatPersonne(Request $request)
+    {
+        $id_pers = $request->id_pers;
+        $id_for = $request->id_for;
+        $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
+        $notes = Note::where('id_ev', $evaluation->id)->get();
+
+        $notesCount = (double)$notes->count();
+        $notestotal = (double)$notes->sum('note');
+        $moyenne = (double)$notes->sum('note') / (double)$notesCount;
+        $moyen = number_format($moyenne, 2, '.', '');
+        $moyentype = (double)$moyen;
+
+        if ($moyentype < 10) {
+            $mention = 'Horrible';
+        } elseif (10 <= $moyentype < 12) {
+            $mention = 'Passable';
+        } elseif (12 <= $moyentype < 14) {
+            $mention = 'Assez Bien';
+        } elseif (14 <= $moyentype < 16) {
+            $mention = 'Bien';
+        } elseif (16 <= $moyentype < 20) {
+            $mention = 'Très Bien';
+        }
+
+
+        $pdf = PDF::loadView('pages.personne.certificatpdf', compact(
+            'evaluation',
+            'notes',
+            'moyentype',
+            'notestotal',
+            'mention'
+        ))->setPaper('A4', 'landscape');
+
+        return $pdf->download('certificat.pdf');
     }
 
     /**
