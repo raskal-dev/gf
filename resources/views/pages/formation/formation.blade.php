@@ -69,6 +69,8 @@
                                     <a class="btn btn-info rounded-pill" href="{{ route('print.pdf', ['id_for' => $formation->id]) }}" title="Fiche de presence"><i class="fa-solid fa-print"></i></a>
                                     <span class="m-1 p-2"></span>
                                     <a class="btn btn-warning rounded-pill" href="{{ route('formation.liste.personnes', ['id_for' => $formation->id]) }}" title="Liste des Personnes"><i class="fa-solid fa-table-list"></i></i></a>
+                                    <span class="m-1 p-2"></span>
+                                    <a href="#" class="btn btn-info rounded-pill" title="Tous Les Certificats"><i class="fa-solid fa-award"></i></a>
                                 </div>
                             </div>
 

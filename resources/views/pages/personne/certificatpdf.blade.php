@@ -13,6 +13,8 @@
 
     <style>
 
+
+
         .tableperso
         {
             border-collapse: collapse;
@@ -37,6 +39,11 @@
 
         body
         {
+            background-image: url("./img/attestation.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
@@ -102,7 +109,38 @@
         }
         .top-img
         {
+            width: 100px;
+            height: 100px;
             font-size: 2rem;
+        }
+
+        .nomprenom
+        {
+            margin-top: 200px;
+        }
+
+        .formation
+        {
+            margin-top: 5px;
+        }
+
+        .nomsize
+        {
+            font-size: 2rem;
+            color: #007BFF;
+            font-family: "URW Chancery L", cursive;
+        }
+
+        .formationsize
+        {
+            font-size: 2.4rem;
+            color: #007BFF;
+        }
+
+        .date
+        {
+            margin-top: 28px;
+            margin-left: 500px;
         }
     </style>
     @php
@@ -114,22 +152,20 @@
     <div class="certificate">
         {{-- <img src="./img/background-certificat.jpg" alt="Fond du Certificat" class="certificate-bg"> --}}
         <div class="content">
-            <div class="image">
-                <img src="./img/presidence-logo.jpg" alt="R" srcset="" class="top-img img-fluid">
-            </div>
 
-            <h1>Certificat de Réussite</h1>
-            <p>Délivré à </p>
-            <h2><b>{{ $evaluation->personne->demande->nom }} {{ $evaluation->personne->demande->prenom }}</b></h2>
-            <p>pour avoir réussi avec succès au </p>
-            <h3>{{ $evaluation->personne->formation->module }}</h3>
-            <p>avec Mention : <b><u>{{ $mention }}</u></b></p>
-            <p>le {{ $now }}</p>
-            <div class="signature">
-                <p>Signature du Directeur</p>
-                <br>
-                <br>
-                <br>
+            <br><br><br>
+            <div class="nomprenom">
+                <span class="nomsize"><b>{{ $evaluation->personne->demande->nom }} {{ $evaluation->personne->demande->prenom }}</b></span>
+            </div>
+            <br>
+            <div class="formation">
+                <span class="formationsize">{{ $evaluation->personne->formation->module }}</span>
+            </div>
+            <div class="mention">
+                <p>Mention : <b><u>{{ $mention }}</u></b></p>
+            </div>
+            <div class="date">
+                <p><b>{{ $now }}</b></p>
             </div>
         </div>
     </div>

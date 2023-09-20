@@ -35,11 +35,6 @@
             max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur du contenant */
         }
 
-
-
-
-
-
     </style>
     @php
         $nowa = \Carbon\Carbon::now();
@@ -85,8 +80,6 @@
                     @endforeach
                 </tbody>
             </table>
-
-
 
         </div>
     </div>
