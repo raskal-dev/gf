@@ -36,7 +36,7 @@
 
                 <br>
 
-                <span class="fw-bold">Nom : </span><span>{{ $evaluation->personne->demande->prenom }}</span>
+                <span class="fw-bold">Prénom : </span><span>{{ $evaluation->personne->demande->prenom }}</span>
 
             </div>
         </div>

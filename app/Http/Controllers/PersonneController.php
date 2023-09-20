@@ -132,22 +132,22 @@ class PersonneController extends Controller
         $id_for = $request->id_for;
         $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
         $notes = Note::where('id_ev', $evaluation->id)->get();
-
         $notesCount = (double)$notes->count();
         $notestotal = (double)$notes->sum('note');
         $moyenne = (double)$notes->sum('note') / (double)$notesCount;
         $moyen = number_format($moyenne, 2, '.', '');
         $moyentype = (double)$moyen;
 
+
         if ($moyentype < 10) {
             $mention = 'Horrible';
-        } elseif (10 <= $moyentype < 12) {
+        } elseif ($moyentype >= 10 && $moyentype < 12) {
             $mention = 'Passable';
-        } elseif (12 <= $moyentype < 14) {
+        } elseif ($moyentype >= 12 && $moyentype < 14) {
             $mention = 'Assez Bien';
-        } elseif (14 <= $moyentype < 16) {
+        } elseif ($moyentype >= 14 && $moyentype < 16) {
             $mention = 'Bien';
-        } elseif (16 <= $moyentype < 20) {
+        } elseif ($moyentype >= 16 && $moyentype < 20) {
             $mention = 'Très Bien';
         }
 

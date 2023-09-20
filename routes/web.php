@@ -74,6 +74,7 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::get('/persionne/update/{personne}', [PersonneController::class, 'getPersonneUpdate'])->name('personne.show');
         Route::post('/persionne/update/personne:{idper}/demande:{iddem}', [PersonneController::class, 'updatePersonne'])->name('personne.update');
         Route::delete('/persionne/delete/personne:{personne}', [PersonneController::class, 'destroyPersonne'])->name('personne.delete');
+        Route::get('/certificat/personne:{id_pers}/formation:{id_for}', [PersonneController::class, 'certificatPersonne'])->name('certificat');
 
         // FORMATUER
         Route::get('/formateur', [FormateurController::class, 'getFormateur'])->name('formateur');

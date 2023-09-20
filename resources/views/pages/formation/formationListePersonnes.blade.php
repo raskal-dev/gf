@@ -40,7 +40,7 @@
                             <span class="m-1"></span>
                             <a href="{{ route('note.pdf', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-warning rounded-pill" title="Exporter Relever"><i class="fa-solid fa-file-export"></i></a>
                             <span class="m-1"></span>
-                            <a href="#" class="btn btn-info rounded-pill" title="Certificat"><i class="fa-solid fa-award"></i></a>
+                            <a href="{{ route('certificat', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-info rounded-pill" title="Certificat"><i class="fa-solid fa-award"></i></a>
                         </td>
                     </tr>
                     @endforeach

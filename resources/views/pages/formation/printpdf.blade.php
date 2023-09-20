@@ -24,27 +24,45 @@
             border: 1px solid #000;
         }
 
-        .image
-        {
-            margin: auto;
+        .image {
+            text-align: center; /* Centre l'image horizontalement */
+            margin-top: 15px; /* Ajustez la valeur en fonction de vos besoins (par exemple, 5px ou 15px) */
+            margin-bottom: 0; /* Assurez-vous que le margin-bottom est à 0 pour que l'image soit au top */
         }
+
+        .image img
+        {
+            max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur du contenant */
+        }
+
+
+
+
+
+
     </style>
+    @php
+        $nowa = \Carbon\Carbon::now();
+        $now = $nowa->format('d/m/Y');
+    @endphp
   </head>
   <body>
     <div class="container">
         <div class="row">
             <div class="col-xl-12 d-flex justify-content-center align-items-center">
-                <div class="image">
+                {{-- <div class="image">
                     <img src="./build/assets/images/presidence-logo.jpg" alt="R" srcset="" class="img-fluid">
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="head shadow-lg p-3 mb-5 bg-body-tertiary rounded titrehead">
-            <h1 class="text-center text">{{ $formation->module }}</h1>
+            <h2 class="text-center text">Fiche de Présence</h2>
         </div>
 
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae facere ad hic qui velit soluta amet obcaecati aliquid aliquam est perferendis at, delectus earum mollitia, fugit dolor possimus quidem sunt ipsum accusamus nam atque totam libero laborum. Tenetur, aperiam. Aliquam culpa quae eius sint accusantium eveniet autem harum, exercitationem saepe?
+            <b><u>Formation</u></b> : {{ $formation->module }}
+            <br>
+            <b><u>Date</u></b> : {{ $now }}
         </p>
         <br><br>
         <div class="row">
