@@ -14,4 +14,9 @@ class Note extends Model
         'label',
         'note'
     ];
+
+    public function evaluation()
+    {
+        return $this->belongsTo(Evaluation::class, 'id_pers', 'id');
+    }
 }

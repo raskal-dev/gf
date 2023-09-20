@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Actions\FonctionAction;
+use App\Models\Evaluation;
 use App\Models\Formation;
+use App\Models\Note;
+use App\Models\Personne;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
@@ -73,7 +76,7 @@ class FormationController extends Controller
 
     }
 
-    public function getFersonneFormation(Request $request)
+    public function getPersonneFormation(Request $request)
     {
         $id_for = $request->id_for;
         $formation = Formation::find($id_for);
@@ -104,6 +107,119 @@ class FormationController extends Controller
 
         return $pdf->download('fichepresence.pdf');
     }
+
+    public function exportCertificats(Request $request)
+    {
+        $id_for = $request->id_for;
+        $formation = Formation::all()->find($id_for);
+
+
+        // Obtenez la liste des personnes admises avec une moyenne >= 10
+        $personnesAdmises = Personne::where('id_for', $id_for)
+            ->with('note') // Assurez-vous que les notes sont chargées
+            ->get()
+            ->filter(function ($personne) {
+                $moyenne = $personne->note->avg('note');
+                if ($moyenne < 10) {
+                    $mention = 'Horrible';
+                } elseif ($moyenne >= 10 && $moyenne < 12) {
+                    $mention = 'Passable';
+                } elseif ($moyenne >= 12 && $moyenne < 14) {
+                    $mention = 'Assez Bien';
+                } elseif ($moyenne >= 14 && $moyenne < 16) {
+                    $mention = 'Bien';
+                } elseif ($moyenne >= 16 && $moyenne < 20) {
+                    $mention = 'Très Bien';
+                }
+                return $moyenne >= 10, $mention;
+            });
+
+
+
+        // Créez un PDF
+        $pdf = new \Dompdf\Adapter\CPDF();
+        $pdf->set_paper('A4', 'landscape');
+
+        foreach ($personnesAdmises as $personne) {
+            // Chargez la vue du certificat pour chaque personne
+            $certificatView = view('pages.formation.certificats', compact('personne', 'formation', 'mention'))->render();
+
+            // Ajoutez le contenu du certificat au PDF
+            $pdf->add_page();
+            $pdf->stream_html($certificatView);
+        }
+
+        // Téléchargez le PDF final
+        $pdf->stream("certificats.pdf");
+    }
+
+
+    // public function getListeAdmis(Request $request)
+    // {
+    //     $id_for = $request->id_for;
+
+    //     // Récupérez la formation correspondant à $id_for
+    //     $formation = Formation::find($id_for);
+
+    //     // Vérifiez si la formation existe
+    //     if ($formation) {
+    //         // Récupérez toutes les personnes inscrites à cette formation
+    //         $personnes = Personne::where('id_for', $id_for)->get();
+
+    //         // Parcourez chaque personne pour calculer sa moyenne
+    //         foreach ($personnes as $personne) {
+    //             $notes = Note::where('id_ev', $personne->evaluation->id)->get();
+
+    //             // Calculez la moyenne
+    //             $notesCount = $notes->count();
+    //             $notestotal = $notes->sum('note');
+    //             $moyenne = $notestotal / ($notesCount > 0 ? $notesCount : 1);
+
+    //             // Ajoutez la moyenne à chaque personne
+    //             $personne->moyenne = number_format($moyenne, 2, '.', '');
+    //         }
+
+    //         // Maintenant, vous avez la liste des personnes avec leurs moyennes
+    //         return view('pages.formation.formationListeAdmis', compact('formation', 'personnes'));
+    //     } else {
+    //         // Gérez le cas où la formation n'existe pas
+    //         return redirect()->route('formation')->with('error', 'Formation non trouvée.');
+    //     }
+    // }
+
+    public function getListeAdmis(Request $request)
+    {
+        $id_for = $request->id_for;
+
+        // Récupérez la formation correspondant à $id_for
+        $formation = Formation::find($id_for);
+
+        // Vérifiez si la formation existe
+        if (!$formation) {
+            // Gérez le cas où la formation n'existe pas
+            return redirect()->route('formation')->with('error', 'Formation non trouvée.');
+        }
+
+        // Récupérez toutes les personnes inscrites à cette formation avec leurs notes
+        $personnes = Personne::where('id_for', $id_for)->with('note')->get();
+
+        // Parcourez chaque personne pour calculer sa moyenne
+        foreach ($personnes as $personne) {
+            $notes = $personne->note; // Accédez aux notes directement depuis la relation
+
+            // Calculez la moyenne
+            $notesCount = $notes->count();
+            $notestotal = $notes->sum('note');
+            $moyenne = $notesCount > 0 ? $notestotal / $notesCount : 0;
+
+            // Ajoutez la moyenne à chaque personne
+            $personne->moyenne = number_format($moyenne, 2, '.', '');
+        }
+        // Maintenant, vous avez la liste des personnes avec leurs moyennes
+        return view('pages.formation.formationListeAdmis', compact('formation', 'personnes'));
+    }
+
+
 
     /**
      * Display the specified resource.

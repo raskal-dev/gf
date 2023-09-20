@@ -65,8 +65,9 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::get('/formation', [FormationController::class, 'getFormation'])->name('formation');
         Route::get('/formation/create', [FormationController::class, 'getFormFormation'])->name('formation.create');
         Route::post('/foramtsion/ajout', [FormationController::class, 'addFormation'])->name('formation.ajout');
-        Route::get('/foramtsion/liste/personnes/{id_for}', [FormationController::class, 'getFersonneFormation'])->name('formation.liste.personnes');
+        Route::get('/foramtsion/liste/personnes/{id_for}', [FormationController::class, 'getPersonneFormation'])->name('formation.liste.personnes');
         Route::get('/foramtsion/liste/personnes/pdf/{id_for}', [FormationController::class, 'pdfFormation'])->name('print.pdf');
+        Route::get('/formation/liste/admis/formation:{id_for}', [FormationController::class, 'getListeAdmis'])->name('formation.liste.admis');
 
         // PERSONNE
         Route::get('/personne', [PersonneController::class, 'getPersonne'])->name('personne');

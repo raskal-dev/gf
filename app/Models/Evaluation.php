@@ -24,4 +24,9 @@ class Evaluation extends Model
     {
         return $this->belongsTo(Formation::class, 'id_for', 'id');
     }
+
+    public function note()
+    {
+        return $this->hasMany(Note::class, 'id_ev', 'id');
+    }
 }

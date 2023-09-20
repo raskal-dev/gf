@@ -7,12 +7,17 @@
             <h1 class="text-center text text-info">{{ $formation->module }}</h1>
         </div>
 
+        <div class="head m-auto content-center">
+            <h2>Liste des personnes admis</h2>
+        </div>
+        <br>
+
         <div class="row">
             <div class="col-md-3">
                 <div class="product-box position-relative">
                     <div class="icons">
-                        <a href="{{ route('formation') }}" class="redSubmit text-decoration-none text-dark">Retour</a>
-                        <a href="{{ route('formation.liste.admis', ['id_for' => $formation->id]) }}" class="blueSubmit text-decoration-none text-dark">Liste des admis</a>
+                        <a href="{{ route('formation.liste.personnes', ['id_for' => $formation->id]) }}" class="redSubmit text-decoration-none text-dark">Retour</a>
+                        {{-- <a href="#" class="blueSubmit text-decoration-none text-dark">Liste des admis</a> --}}
                     </div>
                 </div>
             </div>
@@ -31,18 +36,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($personnesFormations as $pf)
+                    @foreach ($personnes as $personne)
+                    @if($personne->moyenne >=10)
                     <tr>
-                        <td>{{ $pf->matricule }}</td>
-                        <td>{{ $pf->demande->nom }} {{ $pf->demande->prenom }}</td>
+                        <td>{{ $personne->matricule }}</td>
+                        <td>{{ $personne->demande->nom }} {{ $personne->demande->prenom }}</td>
                         <td>
-                            <a href="{{ route('evaluation', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-primary rounded-pill" title="Evaluer">Evaluer <i class="fa-solid fa-circle-chevron-right"></i></a>
+                            <a href="{{ route('evaluation', ['id_pers' => $personne->id, 'id_for' => $formation->id]) }}" class="btn btn-primary rounded-pill" title="Evaluer">Evaluer <i class="fa-solid fa-circle-chevron-right"></i></a>
                             <span class="m-1"></span>
-                            <a href="{{ route('note.pdf', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-warning rounded-pill" title="Exporter Relever"><i class="fa-solid fa-file-export"></i></a>
+                            <a href="{{ route('note.pdf', ['id_pers' => $personne->id, 'id_for' => $formation->id]) }}" class="btn btn-warning rounded-pill" title="Exporter Relever"><i class="fa-solid fa-file-export"></i></a>
                             <span class="m-1"></span>
-                            <a href="{{ route('certificat', ['id_pers' => $pf->id, 'id_for' => $formation->id]) }}" class="btn btn-info rounded-pill" title="Certificat"><i class="fa-solid fa-award"></i></a>
+                            <a href="{{ route('certificat', ['id_pers' => $personne->id, 'id_for' => $formation->id]) }}" class="btn btn-info rounded-pill" title="Certificat"><i class="fa-solid fa-award"></i></a>
                         </td>
                     </tr>
+                    @endif
+
                     @endforeach
                 </tbody>
             </table>

@@ -27,6 +27,11 @@ class Personne extends Model
 
     public function evaluation()
     {
-        return $this->hasMany(Personne::class, 'id_pers', 'id');
+        return $this->hasMany(Evaluation::class, 'id_pers', 'id');
+    }
+
+    public function note()
+    {
+        return $this->hasManyThrough(Note::class, Evaluation::class, 'id_pers', 'id_ev', 'id');
     }
 }
