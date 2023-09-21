@@ -68,6 +68,7 @@ Route::middleware('prevent-back-history')->group(function () {
         Route::get('/foramtsion/liste/personnes/{id_for}', [FormationController::class, 'getPersonneFormation'])->name('formation.liste.personnes');
         Route::get('/foramtsion/liste/personnes/pdf/{id_for}', [FormationController::class, 'pdfFormation'])->name('print.pdf');
         Route::get('/formation/liste/admis/formation:{id_for}', [FormationController::class, 'getListeAdmis'])->name('formation.liste.admis');
+        Route::get('/formation/certificats/formation:{id_for}', [FormationController::class, 'exportCertificats'])->name('formation.certificats');
 
         // PERSONNE
         Route::get('/personne', [PersonneController::class, 'getPersonne'])->name('personne');

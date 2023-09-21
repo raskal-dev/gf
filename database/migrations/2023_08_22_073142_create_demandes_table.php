@@ -22,6 +22,8 @@ return new class extends Migration
             $table->date('date_nais');
             $table->string('cin', 12)->unique()->nullable();
             $table->string('sexe', 1);
+            $table->text('demande');
+            $table->boolean('isinscrit')->default(false);
             $table->timestamps();
         });
     }

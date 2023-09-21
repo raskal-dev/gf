@@ -108,11 +108,55 @@ class FormationController extends Controller
         return $pdf->download('fichepresence.pdf');
     }
 
+    // public function exportCertificats(Request $request)
+    // {
+    //     $id_for = $request->id_for;
+    //     $formation = Formation::all()->find($id_for);
+
+
+    //     // Obtenez la liste des personnes admises avec une moyenne >= 10
+    //     $personnesAdmises = Personne::where('id_for', $id_for)
+    //         ->with('note') // Assurez-vous que les notes sont chargées
+    //         ->get()
+    //         ->filter(function ($personne) {
+    //             $moyenne = $personne->note->avg('note');
+    //             if ($moyenne < 10) {
+    //                 $mention = 'Horrible';
+    //             } elseif ($moyenne >= 10 && $moyenne < 12) {
+    //                 $mention = 'Passable';
+    //             } elseif ($moyenne >= 12 && $moyenne < 14) {
+    //                 $mention = 'Assez Bien';
+    //             } elseif ($moyenne >= 14 && $moyenne < 16) {
+    //                 $mention = 'Bien';
+    //             } elseif ($moyenne >= 16 && $moyenne < 20) {
+    //                 $mention = 'Très Bien';
+    //             }
+    //             return [$moyenne >= 10, $mention];
+    //         });
+
+
+
+    //     // Créez un PDF
+    //     $pdf = new \Dompdf\Adapter\CPDF();
+    //     $pdf->set_paper('A4', 'landscape');
+
+    //     foreach ($personnesAdmises as $personne) {
+    //         // Chargez la vue du certificat pour chaque personne
+    //         $certificatView = view('pages.formation.certificats', compact('personne', 'formation', 'mention'))->render();
+
+    //         // Ajoutez le contenu du certificat au PDF
+    //         $pdf->add_page();
+    //         $pdf->stream_html($certificatView);
+    //     }
+
+    //     // Téléchargez le PDF final
+    //     $pdf->stream("certificats.pdf");
+    // }
+
+
     public function exportCertificats(Request $request)
     {
         $id_for = $request->id_for;
-        $formation = Formation::all()->find($id_for);
-
 
         // Obtenez la liste des personnes admises avec une moyenne >= 10
         $personnesAdmises = Personne::where('id_for', $id_for)
@@ -120,6 +164,12 @@ class FormationController extends Controller
             ->get()
             ->filter(function ($personne) {
                 $moyenne = $personne->note->avg('note');
+                return $moyenne >= 10;
+            })
+            ->map(function ($personne) {
+                $moyenne = $personne->note->avg('note');
+                $mention = '';
+
                 if ($moyenne < 10) {
                     $mention = 'Horrible';
                 } elseif ($moyenne >= 10 && $moyenne < 12) {
@@ -131,28 +181,19 @@ class FormationController extends Controller
                 } elseif ($moyenne >= 16 && $moyenne < 20) {
                     $mention = 'Très Bien';
                 }
-                return $moyenne >= 10, $mention;
+
+                return [
+                    'personne' => $personne,
+                    'mention' => $mention,
+                ];
             });
 
-
-
-        // Créez un PDF
-        $pdf = new \Dompdf\Adapter\CPDF();
-        $pdf->set_paper('A4', 'landscape');
-
-        foreach ($personnesAdmises as $personne) {
-            // Chargez la vue du certificat pour chaque personne
-            $certificatView = view('pages.formation.certificats', compact('personne', 'formation', 'mention'))->render();
-
-            // Ajoutez le contenu du certificat au PDF
-            $pdf->add_page();
-            $pdf->stream_html($certificatView);
-        }
+        // Générez le PDF
+        $pdf = PDF::loadView('pages.formation.certificats', compact('personnesAdmises'))->setPaper('A4','landscape');
 
         // Téléchargez le PDF final
-        $pdf->stream("certificats.pdf");
+        return $pdf->download('certificats.pdf');
     }
-
 
     // public function getListeAdmis(Request $request)
     // {

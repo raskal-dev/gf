@@ -5,7 +5,11 @@
     <div class="container">
 
         <div class="head shadow-lg p-3 mb-5 bg-body-tertiary rounded titrehead">
-            <h1 class="text-center text text-info">Note de {{ $evaluation->personne->demande->nom }} {{ $evaluation->personne->demande->prenom }}</h1>
+            @if ($evaluation && $evaluation->personne)
+                <h1 class="text-center text text-info">Note de {{ $evaluation->personne->demande->nom }} {{ $evaluation->personne->demande->prenom }}</h1>
+            @else
+                <p>Évaluation non trouvée ou personne non associée.</p>
+            @endif
         </div>
 
         <br>

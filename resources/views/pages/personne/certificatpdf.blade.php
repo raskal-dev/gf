@@ -52,11 +52,11 @@
 
         .certificate {
             position: relative;
-            width: 297mm; /* Largeur pour le format A4 */
-            height: 210mm; /* Hauteur pour le format A4 */
+            /* width: 297mm; /* Largeur pour le format A4 */
+            /* height: 210mm; Hauteur pour le format A4 */
             margin: 0 auto;
             overflow: hidden;
-            page-break-after: always;
+            /* page-break-after: always; */
         }
 
         .certificate-bg {
@@ -67,10 +67,10 @@
         }
 
         .content {
-            position: relative;
+            /* position: relative; */
             padding: 40px;
-            width: 257mm;
-            height: 210mm;
+            /* width: 257mm;
+            height: 210mm; */
         }
 
         h1 {
@@ -92,26 +92,6 @@
         p {
             font-size: 16px;
             margin: 5px 0;
-        }
-
-        .signature {
-            margin-top: 20px;
-            text-align: right;
-        }
-
-        .signature p {
-            margin-bottom: 10px;
-        }
-
-        .signature img {
-            width: 150px;
-            height: auto;
-        }
-        .top-img
-        {
-            width: 100px;
-            height: 100px;
-            font-size: 2rem;
         }
 
         .nomprenom

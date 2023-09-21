@@ -13,11 +13,11 @@
         <br>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <div class="product-box position-relative">
                     <div class="icons">
                         <a href="{{ route('formation.liste.personnes', ['id_for' => $formation->id]) }}" class="redSubmit text-decoration-none text-dark">Retour</a>
-                        {{-- <a href="#" class="blueSubmit text-decoration-none text-dark">Liste des admis</a> --}}
+                        <a href="{{ route('formation.certificats', ['id_for' => $formation->id]) }}" class="blueSubmit text-decoration-none text-dark">Exporter tous les certificats <i class="fa-solid fa-award"></i></a>
                     </div>
                 </div>
             </div>

@@ -52,8 +52,8 @@
 
         .certificate {
             position: relative;
-            width: 297mm; /* Largeur pour le format A4 */
-            height: 210mm; /* Hauteur pour le format A4 */
+            /* width: 297mm; Largeur pour le format A4 */
+            /* height: 210mm; Hauteur pour le format A4 */
             margin: 0 auto;
             overflow: hidden;
             page-break-after: always;
@@ -69,8 +69,8 @@
         .content {
             position: relative;
             padding: 40px;
-            width: 257mm;
-            height: 210mm;
+            /* width: 257mm;
+            height: 210mm; */
         }
 
         h1 {
@@ -149,26 +149,27 @@
   </head>
   <body>
 
+    @foreach($personnesAdmises as $item)
     <div class="certificate">
-        {{-- <img src="./img/background-certificat.jpg" alt="Fond du Certificat" class="certificate-bg"> --}}
+        {{-- Votre contenu de certificat ici --}}
         <div class="content">
-
             <br><br><br>
             <div class="nomprenom">
-                <span class="nomsize"><b>{{ $evaluation->personne->demande->nom }} {{ $evaluation->personne->demande->prenom }}</b></span>
+                <span class="nomsize"><b>{{ $item['personne']->demande->nom }} {{ $item['personne']->demande->prenom }}</b></span>
             </div>
             <br>
             <div class="formation">
-                <span class="formationsize">{{ $evaluation->personne->formation->module }}</span>
+                <span class="formationsize">{{ $item['personne']->formation->module }}</span>
             </div>
             <div class="mention">
-                <p>Mention : <b><u>{{ $mention }}</u></b></p>
+                <p>Mention : <b><u>{{ $item['mention'] }}</u></b></p>
             </div>
             <div class="date">
                 <p><b>{{ $now }}</b></p>
             </div>
         </div>
     </div>
+@endforeach
 
 
 
