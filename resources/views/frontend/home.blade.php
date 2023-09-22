@@ -39,7 +39,7 @@
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
                             <div class="text-uppercase text-info fw-bold text-xs mb-1">
-                                <span>Pourcentage de logements vendu</span></div>
+                                <span>Pourcentage</span></div>
                             <div class="row g-0 align-items-center">
                                 <div class="col-auto">
                                     <div class="text-dark fw-bold h5 mb-0 me-3"><span>10%</span></div>
