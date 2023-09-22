@@ -17,7 +17,7 @@ use PhpParser\Node\Stmt\ElseIf_;
 class UserAuthController extends Controller
 {
 
-    /**
+    /**$user->name
      *
      *
      * @var AuthUser
