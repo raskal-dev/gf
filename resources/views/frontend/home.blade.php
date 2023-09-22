@@ -14,7 +14,7 @@
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Formations</span></div>
                             <div class="text-dark fw-bold h5 mb-0"><span>{{ $countFormation }}</span></div>
                         </div>
-                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                        <div class="col-auto"><i class="fa-solid fa-ticket fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
             </div>
@@ -24,10 +24,10 @@
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
-                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Logement</span></div>
-                            <div class="text-dark fw-bold h5 mb-0"><span>300.000 Ariary</span></div>
+                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Personne</span></div>
+                            <div class="text-dark fw-bold h5 mb-0"><span>{{ $conutPersonne }}</span></div>
                         </div>
-                        <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <div class="col-auto"><i class="fa-solid fa-people-line fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -64,10 +64,10 @@
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
-                            <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Achat</span></div>
-                            <div class="text-dark fw-bold h5 mb-0"><span>23</span></div>
+                            <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Formateur</span></div>
+                            <div class="text-dark fw-bold h5 mb-0"><span>{{ $conutFormateur }}</span></div>
                         </div>
-                        <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
+                        <div class="col-auto"><i class="fa-solid fa-people-group fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
             </div>
@@ -182,18 +182,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-center small mt-4"><span class="me-2"><i
-                                class="fas fa-circle text-primary"></i>&nbsp;Direct</span><span
-                            class="me-2"><i
-                                class="fas fa-circle text-success"></i>&nbsp;Social</span><span
-                            class="me-2"><i class="fas fa-circle text-info"></i>&nbsp;Refferal</span>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- End: Chart -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -331,10 +325,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
-<a class="btn btn-warning" href="{{ route('demande.form') }}">Demande</a>
+{{-- <a class="btn btn-warning" href="{{ route('demande.form') }}">Demande</a> --}}
+<br><br><br><br><br><br>
+<br><br><br><br><br>
 </div>
 <footer class="bg-white sticky-footer">
 <div class="container my-auto">

@@ -31,7 +31,7 @@
             <div class="col-md-3">
                 <div class="product-box position-relative">
                     <div class="icons">
-                        {{-- <a href="{{ route('formation.liste.personnes', ['id_for' => $formation->id_for]) }}" class="redSubmit text-decoration-none text-dark">Retour</a> --}}
+                        <a href="{{ route('formation.liste.personnes', ['id_for' => $formation->id]) }}" class="redSubmit text-decoration-none text-dark">Listes Personnes <i class="fa-solid fa-table-list"></i></a>
                         <a href="#" class="text-decoration-none text-dark"></a>
                     </div>
                 </div>

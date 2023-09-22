@@ -124,5 +124,19 @@
                 </form>
             </div>
         </div>
+        <br><br><br>
+        <div class="details1">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Create Account</h2>
+                    {{-- <a href="#" class="btn1">View All</a> --}}
+                </div>
+
+                <h4>Create account for other user.</h4>
+<br><br>
+                <a class="blueSubmit" href="{{ route('user.register') }}">Create User</a>
+<br><br>
+            </div>
+        </div>
     </div>
 @endsection

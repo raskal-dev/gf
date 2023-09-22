@@ -15,7 +15,7 @@
         <h2>Create new account</h2>
         <form method="POST" autocomplete="off" action="{{ route('user.ajouter.register') }}">
             @csrf
-                
+
             <div class="user-box">
                 <input type="text" id="name" name="name" value="{{ old('name') }}">
                 <label for="name">Username</label>
@@ -48,7 +48,7 @@
             </button>
         </form>
         <br>
-        <a class="create_account" href="{{ route('user.login') }}"><b> I already have account</b> </a>
+        <a class="create_account" href="{{ route('user.profile') }}"><b> Annuler la creation d'un utilisateur.</b> </a>
     </div>
 
 </body>

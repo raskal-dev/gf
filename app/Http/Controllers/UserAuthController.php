@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Demande;
+use App\Models\Formateur;
 use App\Models\Formation;
+use App\Models\Personne;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -99,6 +101,8 @@ class UserAuthController extends Controller
         // COUNTS
         $countDemande = Demande::all()->count();
         $countFormation = Formation::all()->count();
+        $conutPersonne = Personne::all()->count();
+        $conutFormateur = Formateur::all()->count();
 
 
 
@@ -117,6 +121,8 @@ class UserAuthController extends Controller
             'formations',
             'countDemande',
             'countFormation',
+            'conutPersonne',
+            'conutFormateur'
         ));
     }
 
