@@ -73,6 +73,23 @@
             </div>
         </div>
     </div><!-- Start: Chart -->
+    <br>
+    <section>
+        @if(session()->has("success"))
+            <div class="alert alert-success">
+                <h3>{{ session()->get('success') }}</h3>
+            </div>
+        @elseif (session()->has("errordelete"))
+            <div class="alert alert-danger">
+                <h4>{{ session()->get('errordelete') }}</h4>
+            </div>
+        @elseif (session()->has("error"))
+            <div class="alert alert-danger">
+                <h4>{{ session()->get('error') }}</h4>
+            </div>
+        @endif
+    </section>
+    <br>
     <div class="row">
         <div class="col-lg-7 col-xl-8">
             <div class="card shadow mb-4">

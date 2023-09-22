@@ -51,7 +51,7 @@ class UserAuthController extends Controller
         if($user) {
             if(Hash::check($request -> password, $user -> password)) {
                 $request -> session() -> put('user_id_auth', $user -> id);
-                return redirect('menu');
+                return redirect('menu')->with('success', 'Bienvenu '.$user->name);;
             } else {
                 return back() -> with('fail', 'Mot de passe incorrect');
             }
@@ -170,7 +170,7 @@ class UserAuthController extends Controller
 
         $request -> session() -> put('user_id_auth', $user -> id);
 
-        return redirect('menu');
+        return redirect('menu')->with('success', 'Bienvenu '.$user->name);
     }
 
     /**
