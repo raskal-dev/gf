@@ -36,36 +36,43 @@
             @csrf
 
             <label class="labelName">
+                <b>Nom :</b>
                 <input type="text" id="nom_form" name="nom_form" class="inputName" placeholder="Nom"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('nom_form') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Prénom :</b>
                 <input type="text" id="prenom_form" name="prenom_form" class="inputName" placeholder="Prénom"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('prenom_form') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelEmail">
+                <b>Email :</b>
                 <input type="email" id="mail_form" name="mail_form" class="inputEmail" placeholder="Email"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('mail_form') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Téléphone :</b>
                 <input type="text" id="num_tel_form" name="num_tel_form" class="inputName" placeholder="Téléphone"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('num_tel_form') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Date de Naissance :</b>
                 <input type="date" id="date_nais_form" name="date_nais_form" class="inputName" placeholder="Date De Naissance"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('date_nais_form') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>CIN :</b>
                 <input type="text" id="cin_form" name="cin_form" class="inputName" placeholder="CIN"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('cin_form') {{$message}} @enderror</b></span>
             </label>
 
             <label class="labelName">
+                <b>Sexe :</b>
                 <select name="sexe_form" id="sexe_form" class="inputName">
                     <option value=""> --- Selection votre genre --- </option>
                     <option value="M">Masculin</option>

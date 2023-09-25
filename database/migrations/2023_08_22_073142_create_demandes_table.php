@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('demandes', function (Blueprint $table) {
             $table->id();
+            $table->string('id_fb', 100)->nullable();
             $table->string('nom', 30);
             $table->string('prenom', 60)->nullable();
             $table->string('mail')->nullable()->unique();

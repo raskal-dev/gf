@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Demande;
 use App\Models\Formation;
 use Carbon\Carbon;
+use Dotenv\Validator;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class DemandeController extends Controller
@@ -79,6 +81,25 @@ class DemandeController extends Controller
 
         return back()->with('success', "Votre demande a été bien envoyer et nous vous prions d'attandre la validation de votre demande.");
     }
+
+    public function addDemandeApi(Request $request)
+    {
+        Demande::create([
+            'nom' => $request->nom,
+            'id_fb' => $request->id_fb,
+            'prenom' => $request->prenom,
+            'mail' => $request->email,
+            'num_tel' => $request->tel,
+            'date_nais' => $request->datenaissance,
+            'cin' => $request->cin,
+            'sexe' => $request->sexe,
+            'demande' => $request->formation,
+            'isinscrit' => 0
+        ]);
+
+        return response()->json(['message' => 'User created'], 201);
+    }
+
 
     /**
      * Display the specified resource.

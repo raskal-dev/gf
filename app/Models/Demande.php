@@ -11,6 +11,7 @@ class Demande extends Model
 
     protected $fillable = [
         'nom',
+        'id_fb',
         'prenom',
         'mail',
         'num_tel',

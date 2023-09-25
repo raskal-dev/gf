@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::match(['get', 'post'], '/webhook', 'WebhookController@verify');
+Route::post('/webhook', 'WebhookController@handle');
+
 Route::get('/', function () {
     return view('auth.login');
 })->name('home.laravel');

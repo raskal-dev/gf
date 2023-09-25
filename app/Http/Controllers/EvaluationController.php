@@ -20,7 +20,6 @@ class EvaluationController extends Controller
         $id_pers = $request->id_pers;
         $id_for = $request->id_for;
 
-        // $evaluation = Evaluation::where('id_pers', $id_pers)->where('id_for', $id_pers)->get();
         $evaluation = Evaluation::whereRaw("id_pers = '$id_pers' AND id_for = $id_for")->first();
         $personnes = Personne::all();
         $formations = Formation::all();
@@ -30,9 +29,6 @@ class EvaluationController extends Controller
 
         $notesevs = Note::where('id_ev', $evaluation->id)->get();
         $notesevsCount = (double)$notesevs->count();
-        // $moyenne = (double)$notesevs->sum('note') / (double)$notesevsCount;
-        // $moyen = number_format($moyenne, 2, '.', '');
-        // $moyentype = (double)$moyen;
 
         if ($notesevsCount > 0) {
             $moyenne = $notesevs->sum('note') / $notesevsCount;

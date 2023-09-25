@@ -7,7 +7,7 @@
             <h1 class="text-center text text-info">Personnes</h1>
         </div>
         <h1>Personne</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur aperiam necessitatibus, deserunt illo quod odit, dolore saepe magnam repellat adipisci odio tempore quasi dolorem non possimus repudiandae a. Dolores nemo sint quaerat optio placeat obcaecati nisi, praesentium maiores! Eaque, commodi quaerat est in expedita odit totam ab natus soluta tempora.</p>
+        <p>Listes des personnes qui est acceptée dans un formation.</p>
         <br><br>
         <section>
             @if(session()->has("success"))
