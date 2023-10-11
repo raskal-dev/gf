@@ -103,17 +103,24 @@ class FormateurController extends Controller
 
     public function addContrat(Request $request)
     {
-        $request->validate([
-            'id_for' => 'required',
-            'id_form' => 'required'
-        ]);
+        $countContrat = Former::whereRaw("id_form = '$request->id_form' AND id_for = $request->id_for")->count();
 
-        Former::create([
-            'id_for' => $request->id_for,
-            'id_form' => $request->id_form
-        ]);
+        if ($countContrat > 0) {
+            return redirect()->route('formateur.info', ['id_form' => $request->id_form])->with('error', 'Le formateur est déjà dans cette formation !');
+        } else {
+            $request->validate([
+                'id_for' => 'required',
+                'id_form' => 'required'
+            ]);
 
-        return redirect()->route('formateur.info', ['id_form' => $request->id_form])->with('success', 'Assigation est succès !');
+            Former::create([
+                'id_for' => $request->id_for,
+                'id_form' => $request->id_form
+            ]);
+
+            return redirect()->route('formateur.info', ['id_form' => $request->id_form])->with('success', 'Assigation est succès !');
+        }
+
     }
 
     /**

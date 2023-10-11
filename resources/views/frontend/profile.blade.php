@@ -22,11 +22,11 @@
         <div class="details1">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Profile d'information</h2>
+                    <h2>Profil d'information</h2>
                     {{-- <a href="#" class="btn1">View All</a> --}}
                 </div>
 
-                <h4>Update your account's profile information and email address</h4>
+                <h4>Mettez à jour les informations de profil et l'adresse e-mail de votre compte</h4>
 
                 <form class="formupdateuser" method="POST" action="{{route('update.profile', ['user' => $data->id])}}">
                     @csrf
@@ -36,12 +36,12 @@
                     <input type="hidden" name="id" value="{{ $data -> id }}">
 
                     <label class="labelName">
-                        <input type="text" id="inputText" name="name" class="inputName" value="{{ $data -> name }}" placeholder="Your name"/>
+                        <input type="text" id="inputText" name="name" class="inputName" value="{{ $data -> name }}" placeholder="Votre nom"/>
                         <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('name') {{$message}} @enderror</b></span>
                     </label>
 
                     <label class="labelEmail">
-                        <input type="email" id="inputText" name="email" class="inputEmail" value="{{ $data -> email }}" placeholder="Your email"/>
+                        <input type="email" id="inputText" name="email" class="inputEmail" value="{{ $data -> email }}" placeholder="Votre email"/>
                         <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('email') {{$message}} @enderror</b></span>
                     </label>
 
@@ -55,11 +55,11 @@
         <div class="details1">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Update Password</h2>
+                    <h2>Mettre à jour le mot de passe</h2>
                     {{-- <a href="#" class="btn1">View All</a> --}}
                 </div>
 
-                <h4>Ensure your account is using a long, random password to stay secure.</h4>
+                <h4>Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité.</h4>
                 <div>
                     <h4>
                         @if (Session::has('success'))
@@ -74,7 +74,7 @@
                     <input type="hidden" name="id" value="{{ $data -> id }}">
 
                     <label class="labelName">
-                        <input type="password" id="inputText" name="current_password" class="inputName" value="{{ old('current_password') }}" placeholder="Current Password"/>
+                        <input type="password" id="inputText" name="current_password" class="inputName" value="{{ old('current_password') }}" placeholder="Mot de passe actuel"/>
                         <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('current_password') {{$message}} @enderror</b></span>
                         <span style="color: red; margin-top: -10px;margin-left: 20px"><b>
                             @if (Session::has('fail'))
@@ -84,12 +84,12 @@
                     </label>
 
                     <label class="labelEmail">
-                      <input type="password" id="inputText" name="password" class="inputEmail" value="{{ old('password') }}" placeholder="New Password"/>
+                      <input type="password" id="inputText" name="password" class="inputEmail" value="{{ old('password') }}" placeholder="Nouveau mot de passe"/>
                       <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('password') {{$message}} @enderror</b></span>
                     </label>
 
                     <label class="labelEmail">
-                        <input type="password" id="inputText" name="password_confirmation" value="{{ old('password_confirmation') }}" class="inputEmail" placeholder="Confirm Password"/>
+                        <input type="password" id="inputText" name="password_confirmation" value="{{ old('password_confirmation') }}" class="inputEmail" placeholder="Confirmez le mot de passe"/>
                         <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('password_confirmation') {{$message}} @enderror</b></span>
                     </label>
 
@@ -103,12 +103,12 @@
         <div class="details1">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Delete Account</h2>
+                    <h2>Supprimer le compte</h2>
                     {{-- <a href="#" class="btn1">View All</a> --}}
                 </div>
 
-                <h4>Once your account is deleted, all of its resources and data will be permanently deleted.
-                    Before deleting your account, please download any data or information that you wish to retain.</h4>
+                <h4>Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées.
+                    Avant de supprimer votre compte, veuillez télécharger toutes les données ou informations que vous souhaitez conserver.</h4>
 
                 <form action="{{route('user.delete', ['user' => $data -> id])}}" method="POST">
                     @csrf
@@ -128,13 +128,13 @@
         <div class="details1">
             <div class="recentOrders">
                 <div class="cardHeader">
-                    <h2>Create Account</h2>
+                    <h2>Créer un compte</h2>
                     {{-- <a href="#" class="btn1">View All</a> --}}
                 </div>
 
-                <h4>Create account for other user.</h4>
+                <h4>Créez un compte pour un autre utilisateur.</h4>
 <br><br>
-                <a class="blueSubmit" href="{{ route('user.register') }}">Create User</a>
+                <a class="blueSubmit" href="{{ route('user.register') }}">Créer un utilisateur</a>
 <br><br>
             </div>
         </div>

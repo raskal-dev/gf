@@ -42,7 +42,7 @@
                                     class="dropdown-item" href="{{ route('demande.form.accepte', ['id_demande' => $demande->id]) }}">&nbsp;Accepter</a><a class="dropdown-item"
                                     href="#">&nbsp;Refuser</a>
                             </div>
-                        </div>
+                            </div>
 
                         </div>
                         <div class="card-body">

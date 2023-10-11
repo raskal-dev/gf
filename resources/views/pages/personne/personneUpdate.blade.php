@@ -73,7 +73,7 @@
 
             <label class="labelName">
                 <b>CIN : </b>
-                <input type="text" id="cin" name="cin" class="inputName" placeholder="CIN" value="{{ $personne->formation->cin }}"/>
+                <input type="text" id="cin" name="cin" class="inputName" placeholder="CIN" value="{{ $personne->demande->cin }}"/>
                 <span style="color: red; margin-top: -10px;margin-left: 20px"><b>@error('cin') {{$message}} @enderror</b></span>
             </label>
 
